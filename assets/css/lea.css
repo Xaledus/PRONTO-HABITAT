@@ -1,0 +1,298 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PRONTO HABITAT — Léa, assistante projet
+   Chargée après ph.css, dont elle reprend TOUS les jetons.
+
+   Trois consignes de recette structurent cette feuille :
+
+   §28 — Léa doit paraître résidentielle, pas « support technique ».
+     En-tête navy, corps blanc, bulles Léa en ivoire, réponse du
+     visiteur en navy, orange réservé à l'action. Beaucoup d'espace,
+     bordures fines, ombres faibles. Le widget doit évoquer un
+     concierge habitat, pas un chat de support IT.
+
+   §29 — pas de grosse bulle permanente qui annonce « chatbot ».
+     Un portrait circulaire discret, un micro-label au premier
+     passage, puis plus rien.
+
+   Audit système visuel — la version précédente n'utilisait AUCUN
+     jeton du site : sept valeurs de rayon contre trois, six corps en
+     dur, une ombre à cinq fois l'opacité du reste. Elle se lisait
+     comme un embed tiers. Ici, tout passe par les variables de
+     ph.css ; les seules valeurs propres sont celles qui n'existent
+     pas ailleurs.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --lea-z: 90;
+
+  /* Surfaces du widget — dérivées de la palette, jamais réinventées. */
+  --lea-head:   var(--ph-navy);
+  --lea-body:   var(--ph-white);
+  --lea-bubble: var(--ph-ivory);
+  --lea-line:   var(--line);
+
+  /* Bordure de contrôle. --line-strong ne vaut que 1,73:1 sur blanc,
+     sous le seuil de 3:1 exigé pour la limite d'un champ de saisie.
+     Même famille chromatique que l'ivoire, valeur abaissée. */
+  --lea-line-ctl: #8C8880;   /* 3,53:1 sur blanc */
+
+  --lea-muted: var(--body);
+}
+
+/* ── DÉCLENCHEUR ──────────────────────────────────────────────────
+   Le portrait de Léa EST le déclencheur : un rond de 60 px, pas une
+   pastille de messagerie. Le liseré orange le rattache à la marque
+   sans ajouter de badge. */
+#lea-trigger {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 60px; height: 60px; border-radius: 50%;
+  padding: 0; overflow: hidden; cursor: pointer;
+  background: var(--ph-navy);
+  border: 2px solid var(--ph-orange);
+  box-shadow: var(--shadow-md);
+  z-index: var(--lea-z);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: transform .18s ease, opacity .3s ease, visibility .3s ease;
+}
+/* visibility, et non seulement opacity : un bouton à opacity 0 reste
+   dans la séquence de tabulation et se fait annoncer par un lecteur
+   d'écran alors qu'il est invisible. */
+#lea-trigger.is-shown { opacity: 1; visibility: visible; }
+#lea-trigger:hover { transform: scale(1.06); }
+#lea-trigger img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+/* Repli si le portrait n'est pas encore produit. */
+.lea-mono {
+  width: 100%; height: 100%; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--dark-2); color: var(--ph-orange);
+  font-weight: 700; font-size: var(--fs-6); user-select: none;
+}
+
+/* ── MICRO-LABEL D'INVITATION ─────────────────────────────────────
+   §29 : une ligne discrète à côté du portrait, une seule fois. Pas
+   de carte, pas de portrait dupliqué, pas de croix de fermeture — il
+   s'efface tout seul et au premier clic. */
+#lea-invite {
+  position: fixed; bottom: 38px; right: 96px; z-index: calc(var(--lea-z) - 1);
+  max-width: 230px; padding: var(--s-3) var(--s-4);
+  background: var(--ph-white); color: var(--ink);
+  border: 1px solid var(--lea-line); border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--fs-2); line-height: 1.4;
+  opacity: 0; visibility: hidden; transform: translateX(8px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
+  pointer-events: none;
+}
+#lea-invite.is-shown { opacity: 1; visibility: visible; transform: none; }
+#lea-invite strong { color: var(--orange-text); }
+
+/* ── FENÊTRE ──────────────────────────────────────────────────────
+   Corps blanc : c'est ce qui sépare Léa d'un chat de support. */
+#lea-widget {
+  position: fixed; bottom: 96px; right: 24px;
+  width: 380px; height: 540px; max-height: calc(100vh - 130px);
+  z-index: calc(var(--lea-z) + 1);
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--lea-body);
+  border: 1px solid var(--lea-line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+#lea-widget.is-open { opacity: 1; visibility: visible; transform: none; }
+
+/* ── EN-TÊTE ──────────────────────────────────────────────────── */
+.lea-head {
+  flex: none; display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-4); background: var(--lea-head); color: var(--ph-white);
+  -webkit-font-smoothing: antialiased;
+}
+.lea-portrait {
+  position: relative; flex: none; width: 44px; height: 44px;
+  border-radius: 50%; overflow: hidden; border: 2px solid var(--ph-orange);
+}
+.lea-portrait img,
+.lea-portrait .lea-mono {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: opacity .3s ease;
+}
+.lea-portrait .is-hidden { opacity: 0; }
+.lea-id { flex: 1; min-width: 0; line-height: 1.35; }
+.lea-id strong { display: block; font-size: var(--fs-3); font-weight: 700; }
+.lea-id span   { font-size: var(--fs-2); color: rgba(255,255,255,.72); }
+.lea-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: #7BD69B; margin-right: 6px; vertical-align: middle;
+}
+.lea-dot.is-off { background: rgba(255,255,255,.45); }
+.lea-close {
+  flex: none; width: 32px; height: 32px; padding: 0;
+  background: none; border: 0; cursor: pointer; border-radius: var(--r-sm);
+  color: rgba(255,255,255,.75); font-size: 18px; line-height: 1;
+  transition: color .15s ease, background .15s ease;
+}
+.lea-close:hover { color: var(--ph-white); background: rgba(255,255,255,.12); }
+
+/* ── FIL ──────────────────────────────────────────────────────── */
+.lea-thread {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--s-5) var(--s-4);
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.lea-thread::-webkit-scrollbar { width: 4px; }
+.lea-thread::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+.lea-msg {
+  max-width: 86%; padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md); font-size: var(--fs-3); line-height: 1.55;
+  word-break: break-word; animation: leaIn .22s ease;
+}
+@keyframes leaIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.lea-msg.from-lea  { background: var(--lea-bubble); color: var(--ink); align-self: flex-start; border-bottom-left-radius: var(--r-sm); }
+.lea-msg.from-user { background: var(--ph-navy);    color: var(--ph-white); align-self: flex-end; border-bottom-right-radius: var(--r-sm); font-weight: 500; }
+.lea-msg a { color: var(--orange-text); font-weight: 700; }
+.lea-msg.from-user a { color: var(--ph-orange); }
+.lea-note { display: block; margin-top: var(--s-2); font-size: var(--fs-2); color: var(--lea-muted); }
+
+.lea-typing {
+  align-self: flex-start; display: flex; gap: 4px; align-items: center;
+  padding: var(--s-3) var(--s-4); background: var(--lea-bubble);
+  border-radius: var(--r-md); border-bottom-left-radius: var(--r-sm);
+}
+.lea-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--lea-muted); animation: leaDot 1.2s infinite; }
+.lea-typing i:nth-child(2) { animation-delay: .2s; }
+.lea-typing i:nth-child(3) { animation-delay: .4s; }
+@keyframes leaDot { 0%,60%,100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+/* ── PIED : choix, saisie, formulaire ─────────────────────────── */
+.lea-foot {
+  flex: none; max-height: 218px; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--s-4); background: var(--ph-white);
+  border-top: 1px solid var(--lea-line);
+}
+.lea-choices { display: flex; flex-direction: column; gap: var(--s-2); }
+.lea-choice {
+  width: 100%; text-align: left; cursor: pointer; font-family: inherit;
+  padding: var(--s-3) var(--s-4); font-size: var(--fs-3); font-weight: 500;
+  color: var(--ink); background: var(--ph-white);
+  border: 1px solid var(--lea-line-ctl); border-radius: var(--r-md);
+  transition: background .15s ease, border-color .15s ease;
+}
+/* L'orange marque la sélection, pas le repos — §2.6 de la recette. */
+.lea-choice:hover:not(:disabled) { background: var(--ph-ivory); border-color: var(--ph-navy); }
+.lea-choice:disabled { opacity: .45; cursor: default; }
+
+.lea-row { display: flex; gap: var(--s-2); align-items: flex-end; }
+.lea-row textarea {
+  flex: 1; height: 44px; max-height: 110px; resize: none;
+  padding: var(--s-3); font-family: inherit; font-size: var(--fs-3); line-height: 1.4;
+  color: var(--ink); background: var(--ph-white);
+  border: 1px solid var(--lea-line-ctl); border-radius: var(--r-md); outline: none;
+}
+.lea-row textarea:focus { border-color: var(--ph-navy); box-shadow: 0 0 0 3px rgba(15,34,51,.10); }
+.lea-send {
+  flex: none; width: 44px; height: 44px; border: 0; border-radius: var(--r-md);
+  background: var(--ph-orange); color: var(--ph-navy); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s ease;
+}
+.lea-send:hover { background: var(--orange-title); }
+.lea-send svg { width: 18px; height: 18px; }
+
+.lea-form { display: flex; flex-direction: column; gap: var(--s-3); }
+.lea-field { display: flex; flex-direction: column; gap: var(--s-1); }
+.lea-field label { font-size: var(--fs-2); font-weight: 700; color: var(--ink); }
+.lea-field input {
+  width: 100%; padding: var(--s-3); font-family: inherit; font-size: var(--fs-3);
+  color: var(--ink); background: var(--ph-white);
+  border: 1px solid var(--lea-line-ctl); border-radius: var(--r-md); outline: none;
+}
+.lea-field input:focus { border-color: var(--ph-navy); box-shadow: 0 0 0 3px rgba(15,34,51,.10); }
+.lea-field input.is-ko { border-color: var(--ko); background: #FDF4F3; }
+.lea-err { display: none; font-size: var(--fs-2); color: var(--ko); }
+.lea-err.is-shown { display: block; }
+.lea-submit {
+  width: 100%; padding: var(--s-3) var(--s-4); border: 0; border-radius: var(--r-md);
+  background: var(--ph-orange); color: var(--ph-navy);
+  font-family: inherit; font-size: var(--fs-3); font-weight: 700; cursor: pointer;
+  transition: background .15s ease;
+}
+.lea-submit:hover { background: var(--orange-title); }
+.lea-consent { font-size: var(--fs-2); color: var(--lea-muted); line-height: 1.45; }
+.lea-consent a { color: var(--lea-muted); }
+
+/* ── RETOUR D'UNE ÉTAPE ───────────────────────────────────────────
+   §10 — remplace le bouton « Revenir au début » en pleine largeur.
+   Discret, aligné à gauche, il ne concurrence pas les choix. Sert
+   aussi de lien « passer » sur un champ facultatif (§14). */
+.lea-back {
+  display: block; margin-top: var(--s-3); padding: var(--s-1) 0;
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  font-size: var(--fs-2); color: var(--lea-muted); text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lea-back:hover { color: var(--ink); }
+
+/* ── BLOCS D'ACTION DANS LE FIL ───────────────────────────────── */
+.lea-cta { align-self: stretch; display: flex; flex-direction: column; gap: var(--s-2); }
+.lea-cta a, .lea-cta button {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+  padding: var(--s-3) var(--s-4); border: 0; border-radius: var(--r-md);
+  font-family: inherit; font-size: var(--fs-3); font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: opacity .15s ease;
+}
+.lea-cta a:hover, .lea-cta button:hover { opacity: .9; }
+.lea-cta .is-wa  { background: #25D366; color: #06301A; }
+.lea-cta .is-tel { background: var(--ph-orange); color: var(--ph-navy); }
+
+/* ── CANAUX — §17 ─────────────────────────────────────────────────
+   WhatsApp n'est plus à égalité avec le rappel et l'email : c'est le
+   seul canal où le visiteur peut joindre une photo, et son message
+   part déjà résumé. Il devient un bouton plein ; les deux autres
+   deviennent des liens.
+
+   Les liens restent navy et soulignés plutôt qu'orange : le §2.7 de
+   la recette proscrit de rendre tous les liens orange, et l'orange
+   est déjà pris par le CTA principal du même bloc. */
+.lea-cta .is-wa { padding: var(--s-4); font-size: var(--fs-4); }
+.lea-alt {
+  display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5);
+  justify-content: center; margin-top: var(--s-2);
+}
+.lea-altlink {
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  font-size: var(--fs-2); font-weight: 600; color: var(--ink);
+  text-decoration: underline; text-underline-offset: 3px; padding: var(--s-2) 0;
+}
+.lea-altlink:hover { color: var(--orange-text); }
+
+/* ── FOCUS ────────────────────────────────────────────────────── */
+#lea-trigger:focus-visible, #lea-widget :focus-visible, #lea-invite :focus-visible {
+  outline: 2px solid var(--orange-text); outline-offset: 2px;
+}
+.lea-head :focus-visible { outline-color: var(--ph-orange); }
+
+@media (prefers-reduced-motion: reduce) {
+  #lea-trigger, #lea-invite, #lea-widget, .lea-msg, .lea-typing i {
+    transition: none !important; animation: none !important;
+  }
+  .lea-thread, .lea-foot { scroll-behavior: auto; }
+}
+
+/* ── MOBILE ───────────────────────────────────────────────────────
+   §29 : le déclencheur ne doit masquer ni la barre d'action, ni les
+   CTA, ni les champs. Il remonte au-dessus de la barre collante et
+   se réduit. */
+@media (max-width: 760px) {
+  #lea-trigger { width: 52px; height: 52px; bottom: 88px; right: 16px; }
+  #lea-invite  { right: 78px; bottom: 98px; max-width: 190px; }
+}
+@media (max-width: 560px) {
+  #lea-widget {
+    width: 100%; height: 88vh; max-height: none;
+    right: 0; bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border-left: 0; border-right: 0; border-bottom: 0;
+  }
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Décrire un problème ou parler d'un projet | Pronto Habitat</title>
+<meta name="description" content="Décrivez-nous votre problème ou votre projet. Deux parcours distincts : dépannage et projet. Le budget reste optionnel au premier contact.">
+<link rel="canonical" href="https://pronto-habitat.fr/contact.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Pronto Habitat">
+<meta property="og:title" content="Contact — Pronto Habitat">
+<meta property="og:description" content="Vous n'avez pas besoin de connaître le nom technique des travaux. Expliquez-nous simplement ce que vous souhaitez résoudre.">
+<meta property="og:url" content="https://pronto-habitat.fr/contact.html">
+<meta name="theme-color" content="#0F2233">
+<link rel="stylesheet" href="assets/css/ph.css?v=6c91dc34">
+<link rel="stylesheet" href="assets/css/lea.css?v=6c91dc34">
+<script src="assets/js/site-config.js?v=6c91dc34" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Pronto Habitat — accueil">
+      <img src="assets/brand/ph-logo-compact-clair.png" alt="Pronto Habitat" width="2000" height="328">
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+      <a href="depannage.html">Dépannage</a>
+      <a href="renovation.html">Rénovation</a>
+      <a href="confort-optimisation.html">Confort &amp; Optimisation</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="pronto-habitat.html">Pronto Habitat</a>
+      <a href="contact.html" class="btn btn-primary btn-sm" aria-current="page">Nous contacter</a>
+    </nav>
+    <a class="header-tel" data-ph="phone-link" aria-label="Appeler Pronto Habitat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-ph-text>Téléphone à définir</span></a>
+    <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="rule"></div>
+      <span class="eyebrow">Contact</span>
+      <h1 class="h-xl">Expliquez-nous votre situation.</h1>
+      <p class="lead">Vous n'avez pas besoin de connaître le nom technique des travaux. Dites-nous
+         ce qui se passe ou ce que vous aimeriez changer&nbsp;: c'est notre travail de traduire
+         cela en solution.</p>
+      <div class="trust-row">
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Un interlocuteur identifié</span>
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Périmètre et prix définis avant de commencer</span>
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Aucun travail supplémentaire sans votre accord</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <!-- ══ DEUX PARCOURS — §18 ═══════════════════════════════════
+           Motif onglets ARIA. Les deux panneaux sont des <form>
+           complets et autonomes : sans JavaScript, l'utilisateur voit
+           les deux formulaires l'un sous l'autre et peut toujours
+           envoyer. Le masquage n'est posé que par site.js. -->
+      <!-- Les id des deux onglets sont « depannage » et « projet » — et
+           non « tab-… » — parce qu'ils sont AUSSI les cibles des ancres
+           contact.html#depannage et contact.html#projet utilisées par
+           tous les CTA du site. L'ancre amène donc le visiteur sur le
+           sélecteur, et site.js ouvre le bon parcours. -->
+      <div class="form-switch" role="tablist" aria-label="Choisir un parcours">
+        <button type="button" role="tab" id="depannage" data-parcours="depannage"
+                aria-controls="panel-depannage" aria-selected="true">J'ai besoin d'un dépannage</button>
+        <button type="button" role="tab" id="projet" data-parcours="projet"
+                aria-controls="panel-projet" aria-selected="false">J'ai un projet</button>
+      </div>
+
+      <!-- ── PARCOURS DÉPANNAGE ─────────────────────────────────── -->
+      <div class="form-panel" id="panel-depannage" role="tabpanel" aria-labelledby="depannage">
+        <div class="text-col">
+          <h2 class="h-md">Décrire mon problème</h2>
+          <p class="mt-4">Indiquez-nous ce qui se passe, joignez si possible une ou deux photos et
+             précisez vos disponibilités. Nous pourrons ainsi comprendre plus rapidement la
+             situation avant de vous répondre.</p>
+        </div>
+
+        <form class="mt-6" method="post" data-ph-form="dépannage" enctype="multipart/form-data">
+          <!-- Piège à robots — invisible pour l'utilisateur.
+               Ne pas supprimer : site.js le lit avant tout envoi. -->
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" value="[Pronto Habitat] Demande de dépannage">
+          <input type="hidden" name="parcours" value="depannage">
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="d-nom">Nom et prénom *</label>
+              <input id="d-nom" name="nom" type="text" required autocomplete="name" placeholder="Prénom Nom">
+            </div>
+            <div class="field">
+              <label for="d-tel">Téléphone *</label>
+              <input id="d-tel" name="telephone" type="tel" required autocomplete="tel"
+                     placeholder="06 XX XX XX XX"
+                     pattern="(?:\+33|0)\s*[1-9](?:[\s.\-]*\d{2}){4}"
+                     title="Numéro français à dix chiffres">
+            </div>
+            <div class="field">
+              <label for="d-email">Email *</label>
+              <input id="d-email" name="email" type="email" required autocomplete="email"
+                     pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}"
+                     title="Adresse de la forme nom@exemple.fr" placeholder="prenom.nom@exemple.fr">
+            </div>
+            <div class="field">
+              <label for="d-ville">Adresse ou ville *</label>
+              <input id="d-ville" name="ville" type="text" required autocomplete="address-level2"
+                     placeholder="Ville, et adresse si vous le souhaitez">
+            </div>
+
+            <div class="field full">
+              <label for="d-nature">Nature du problème *</label>
+              <select id="d-nature" name="nature" required>
+                <option value="">Sélectionnez…</option>
+                <option>Plomberie / fuite</option>
+                <option>Électricité</option>
+                <option>Sanitaire</option>
+                <option>Chauffage</option>
+                <option>Climatisation</option>
+                <option>Serrurerie</option>
+                <option>Petite réparation</option>
+                <option>Remise en état après sinistre</option>
+                <option>Je ne sais pas / autre</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="d-description">Que se passe-t-il&nbsp;? *</label>
+              <textarea id="d-description" name="description" required
+                        placeholder="Décrivez la situation avec vos mots : depuis quand, où dans le logement, ce que vous avez déjà constaté ou essayé."></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="d-dispos">Vos disponibilités *</label>
+              <input id="d-dispos" name="disponibilites" type="text" required
+                     placeholder="Ex. : en semaine après 17h, ou samedi matin">
+            </div>
+
+            <div class="field full">
+              <label for="d-photos">Photos <span class="hint">(une ou deux suffisent)</span></label>
+              <input id="d-photos" name="photos" type="file" accept="image/*" multiple
+                     data-ph-upload disabled>
+              <p class="note mt-2" data-ph-upload-note>Envoi de fichiers momentanément
+                 indisponible&nbsp;: décrivez la situation dans le message, nous vous
+                 recontacterons pour les photos.</p>
+            </div>
+          </div>
+
+          <p class="form-consent">Les informations transmises servent uniquement à traiter votre
+             demande. Elles ne sont ni revendues, ni utilisées à des fins publicitaires.</p>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Transmettre mon besoin</button>
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- ── PARCOURS PROJET ────────────────────────────────────── -->
+      <div class="form-panel" id="panel-projet" role="tabpanel" aria-labelledby="projet">
+        <div class="text-col">
+          <h2 class="h-md">Parler de mon projet</h2>
+          <p class="mt-4">Expliquez-nous ce que vous souhaitez résoudre ou changer, le logement
+             concerné et votre calendrier. Vous pouvez joindre photos, plans, croquis ou
+             inspirations.</p>
+        </div>
+
+        <form class="mt-6" method="post" data-ph-form="projet" enctype="multipart/form-data">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" value="[Pronto Habitat] Demande de projet">
+          <input type="hidden" name="parcours" value="projet">
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="p-nom">Nom et prénom *</label>
+              <input id="p-nom" name="nom" type="text" required autocomplete="name" placeholder="Prénom Nom">
+            </div>
+            <div class="field">
+              <label for="p-tel">Téléphone *</label>
+              <input id="p-tel" name="telephone" type="tel" required autocomplete="tel"
+                     placeholder="06 XX XX XX XX"
+                     pattern="(?:\+33|0)\s*[1-9](?:[\s.\-]*\d{2}){4}"
+                     title="Numéro français à dix chiffres">
+            </div>
+            <div class="field">
+              <label for="p-email">Email *</label>
+              <input id="p-email" name="email" type="email" required autocomplete="email"
+                     pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}"
+                     title="Adresse de la forme nom@exemple.fr" placeholder="prenom.nom@exemple.fr">
+            </div>
+            <div class="field">
+              <label for="p-ville">Adresse ou ville *</label>
+              <input id="p-ville" name="ville" type="text" required autocomplete="address-level2"
+                     placeholder="Ville, et adresse si vous le souhaitez">
+            </div>
+
+            <div class="field">
+              <label for="p-logement">Type de logement *</label>
+              <select id="p-logement" name="type-logement" required>
+                <option value="">Sélectionnez…</option>
+                <option>Appartement</option>
+                <option>Maison</option>
+                <option>Dépendance, garage ou annexe</option>
+                <option>Local à transformer en logement</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="p-nature">Nature du projet *</label>
+              <select id="p-nature" name="nature-projet" required>
+                <option value="">Sélectionnez…</option>
+                <option>Rénovation intérieure</option>
+                <option>Salle de bain</option>
+                <option>Cuisine</option>
+                <option>Aménagement de dépendance</option>
+                <option>Redistribution des espaces</option>
+                <option>Rafraîchissement</option>
+                <option>Confort thermique / climatisation</option>
+                <option>Optimisation / amélioration ciblée</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="p-surface">Surface approximative <span class="hint">(facultatif)</span></label>
+              <input id="p-surface" name="surface" type="text" placeholder="Ex. : 6 m² pour la salle de bain, ou 70 m² au total">
+            </div>
+            <div class="field">
+              <label for="p-calendrier">Calendrier souhaité <span class="hint">(facultatif)</span></label>
+              <input id="p-calendrier" name="calendrier" type="text" placeholder="Ex. : avant l'été, ou dès que possible">
+            </div>
+
+            <!-- Le §18 est explicite : « Le budget reste optionnel au
+                 premier contact. » Ne pas rendre ce champ obligatoire. -->
+            <div class="field full">
+              <label for="p-budget">Enveloppe budgétaire <span class="hint">(facultatif — et sans engagement)</span></label>
+              <input id="p-budget" name="budget" type="text" placeholder="Une fourchette suffit, si vous en avez déjà une en tête">
+            </div>
+
+            <div class="field full">
+              <label for="p-description">Votre projet *</label>
+              <textarea id="p-description" name="description" required
+                        placeholder="Ce que vous souhaitez résoudre, ce que vous aimeriez changer, ce qui vous gêne aujourd'hui, ce que vous imaginez comme résultat."></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="p-fichiers">Photos, plans, croquis ou inspirations</label>
+              <input id="p-fichiers" name="fichiers" type="file" accept="image/*,.pdf" multiple
+                     data-ph-upload disabled>
+              <p class="note mt-2" data-ph-upload-note>Envoi de fichiers momentanément
+                 indisponible&nbsp;: décrivez votre projet dans le message, nous vous
+                 recontacterons pour les documents.</p>
+            </div>
+          </div>
+
+          <p class="form-consent">Les informations transmises servent uniquement à étudier votre
+             projet. Elles ne sont ni revendues, ni utilisées à des fins publicitaires.</p>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Parler de mon projet</button>
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/brand/ph-logo-complet-sombre.png" alt="Pronto Habitat — DÉPANNAGE · CONFORT · OPTIMISATION" width="1939" height="459" loading="lazy">
+        <p>Réparation, rénovation et amélioration de l'habitat avec une prise en charge claire
+           du premier besoin jusqu'aux finitions.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Dépannage</h2>
+        <a href="depannage.html#plomberie">Plomberie</a>
+        <a href="depannage.html#electricite">Électricité</a>
+        <a href="depannage.html#chauffage">Chauffage</a>
+        <a href="depannage.html#sanitaire">Sanitaire</a>
+        <a href="depannage.html#climatisation">Climatisation</a>
+        <a href="depannage.html">Autres interventions</a>
+      </div>
+      <div class="footer-col">
+        <h2>Rénovation</h2>
+        <a href="renovation.html#salle-de-bain">Salle de bain</a>
+        <a href="renovation.html#cuisine">Cuisine</a>
+        <a href="renovation.html#interieure">Rénovation intérieure</a>
+        <a href="renovation.html#dependance">Aménagement</a>
+        <a href="renovation.html#rafraichissement">Revêtements</a>
+        <a href="renovation.html#corps-etat">Tous corps d'état</a>
+      </div>
+      <div class="footer-col">
+        <h2>Pronto Habitat</h2>
+        <a href="pronto-habitat.html">Qui sommes-nous</a>
+        <a href="pronto-habitat.html#engagements">Nos engagements</a>
+          <a href="faq.html">Questions fréquentes</a>
+        <a href="contact.html">Contact</a>
+        <h2 class="mt-5">Contact</h2>
+        <a data-ph="phone">À compléter</a>
+        <a data-ph="email">À compléter</a>
+        <p data-ph="hours">À compléter</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Pronto Habitat — une marque FX&nbsp;Services · Tous droits réservés.</span>
+      <div class="footer-legal-links">
+        <a href="https://fx-services.fr" target="_blank" rel="noopener">FX Services</a>
+        <a href="https://sosfonte.com" target="_blank" rel="noopener">SOS Fonte</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/tracking.js?v=6c91dc34" defer></script>
+<script src="assets/js/site.js?v=6c91dc34" defer></script>
+
+<!-- ══ BARRE D'ACTION MOBILE ═════════════════════════════════════
+     Motif repris de sosfonte.com. Sur mobile, le visiteur decide au
+     milieu de la page : les canaux restent a portee de pouce. Chaque
+     lien disparait si son canal n'est pas encore renseigne (§23), et
+     la barre entiere avec eux s'il n'en reste aucun. -->
+<div class="action-bar" role="group" aria-label="Nous joindre">
+  <a class="btn btn-primary" data-ph="phone-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-ph-text>Appeler</span></a>
+  <a class="btn btn-wa" data-ph-wa="default"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg> WhatsApp</a>
+  <a class="btn btn-navy" href="contact.html">Écrire</a>
+</div>
+
+<script src="assets/js/agent-lea.js?v=6c91dc34" defer></script>
+</body>
+</html>

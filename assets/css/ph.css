@@ -1,0 +1,1098 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PRONTO HABITAT — Feuille de styles unique
+   Palette et règles issues de 10-DA/PRONTO_HABITAT_BRAND.md.
+   Aucune webfont : pile système = zéro requête bloquante, LCP texte.
+
+   ⚠ PALETTE VERROUILLÉE PAR LA CHARTE.
+   Les cinq couleurs de marque sont reprises au HEX exact (§4). Les
+   variantes dérivées plus bas existent uniquement parce que l'orange
+   de marque ne passe pas le seuil de contraste sur fond clair — voir
+   le bloc ORANGES. Toute autre modification passe par le §9.9 de la
+   charte : demander validation avant de toucher à la palette.
+
+   Socle technique repris de FX Services (§22 du cadrage éditorial) :
+   conventions CSS, base 4, échelle de corps, révélation au défilement,
+   règles de focus. La PRÉSENTATION VISUELLE, elle, est propre à PH.
+   ═══════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+
+  /* ══ PALETTE DE MARQUE — §4 de la charte, HEX exacts ════════════ */
+  --ph-navy:   #0F2233;   /* PRONTO, textes, structure, confiance      */
+  --ph-orange: #FF6A00;   /* R signature, HABITAT, séparateurs, CTA    */
+  --ph-ivory:  #F4F2EE;   /* surfaces secondaires, univers habitat     */
+  --ph-gray:   #6B7280;   /* textes secondaires, éléments discrets     */
+  --ph-white:  #FFFFFF;   /* fonds, wordmark sur supports sombres      */
+
+  /* ══ ORANGES — pourquoi trois valeurs et pas une ════════════════
+     --ph-orange sur blanc vaut 2,87:1. C'est en dessous du seuil AA
+     du texte courant (4,5:1) ET du seuil des grands titres (3:1).
+     Utilisé tel quel en texte, il rend le site non conforme RGAA.
+
+     La charte a raison sur le fond — l'orange est un ACCENT, pas une
+     couleur de texte. Ces deux dérivés conservent la teinte 25° et la
+     saturation 100 % de l'orange de marque ; seule la valeur baisse.
+     Ils ne remplacent jamais --ph-orange sur les aplats, les filets,
+     les séparateurs de signature ni les fonds de CTA.
+
+       --orange-title  titres et pictos sur fond clair — 3,6:1 / 3,2:1
+       --orange-text   texte courant orange sur fond clair — 6,1:1
+
+     Sur fond navy, --ph-orange vaut 5,6:1 : il s'utilise directement,
+     sans dérivé. C'est la règle §7 de la charte, et elle est saine.
+     ⚠ À faire valider — ajout à la palette au sens du §9.9.          */
+  --orange-title: #E35E00;
+  --orange-text:  #A34700;
+  --orange-wash:  #FDF1E7;   /* unique aplat orange très clair         */
+
+  /* ══ NEUTRES ════════════════════════════════════════════════════
+     --ink et --paper NE REDÉCLARENT PAS de valeur : ils pointent sur
+     un jeton de marque. Le jour où le navy bouge au §4, une seule
+     ligne change ici.
+
+     --ph-gray sur --ph-ivory tombe à 4,33:1, sous le seuil AA. Le
+     texte secondaire utilise donc --body, qui tient 5,8:1 sur blanc
+     et 5,2:1 sur ivoire. --ph-gray reste réservé aux éléments
+     réellement discrets et non textuels, comme le prévoit sa fiche
+     de rôle au §4.                                                   */
+  --ink:         var(--ph-navy);
+  --body:        #5F6672;
+  --label:       var(--ph-gray);
+  --paper:       var(--ph-white);
+  --paper-alt:   var(--ph-ivory);
+  --line:        #E4E1DC;   /* filet sur blanc, dérivé de l'ivoire     */
+  --line-strong: #8C8880;   /* bordure de champ — 3,53:1 sur blanc     */
+  --line-soft:   #EFEDE9;
+  --dark-line:   rgba(255,255,255,.16);
+  --dark-2:      #16304A;   /* cartes et bandes sur fond navy          */
+
+  /* États de formulaire. Fonds et filets dérivés par color-mix :
+     aucune teinte verte ou rouge n'est introduite à la main. */
+  --ok: #1C7A52;
+  --ko: #B3261E;
+
+  /* ══ TYPOGRAPHIE ════════════════════════════════════════════════
+     Pile système exclusivement. 700 est la SEULE graisse forte
+     réellement dessinée dans Segoe UI, SF Pro et Roboto : demander
+     800 sélectionne la coupe Black sous Windows et Android, avec un
+     rendu incohérent d'une plateforme à l'autre. Ne pas dépasser 700.
+
+     La charte ne définit aucune typographie. L'écart avec FX Services
+     exigé au §22 ne vient donc PAS de la police mais de la mise en
+     page : colonnes de texte plus larges, ivoire, respiration
+     verticale doublée, photographie pleine largeur, zéro carte.      */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --fs-1: 13px;                      /* micro-label capitales          */
+  --fs-2: 15px;                      /* légende, note, pied de page    */
+  --fs-3: 16px;                      /* texte dense                    */
+  --fs-4: 17px;                      /* texte courant                  */
+  --fs-5: 20px;                      /* chapô                          */
+  --fs-6: clamp(21px, 1.6vw, 23px);  /* .h-sm                          */
+  --fs-7: clamp(25px, 2.2vw, 28px);  /* .h-md                          */
+  --fs-8: clamp(31px, 3.6vw, 42px);  /* .h-lg                          */
+  --fs-9: clamp(34px, 5.2vw, 60px);  /* .h-xl — 34 min : les titres de
+                                        projet portent desormais la ville */
+
+  /* ══ ESPACEMENT — base 4 ════════════════════════════════════════
+     Toute valeur hors échelle est une régression.                    */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;  --s-5: 24px;
+  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;  --s-9: 96px;  --s-10: 128px;
+
+  /* ══ FORMES ═════════════════════════════════════════════════════
+     Rayons courts. Registre habitat premium : ni angles secs
+     industriels, ni pilules SaaS.                                    */
+  --r-sm: 3px;  --r-md: 6px;  --r-lg: 10px;
+
+  /* ══ OMBRES ═════════════════════════════════════════════════════
+     Teintées au navy et volontairement discrètes. Rappel : la charte
+     interdit toute ombre DANS LE LOGO (§6.6). Elle n'interdit pas la
+     profondeur d'interface, mais l'esprit du document — respiration,
+     aplats francs — commande d'en user très peu.                     */
+  --shadow-ink: 15, 34, 51;
+  --shadow-sm: 0 1px 2px rgba(var(--shadow-ink),.05), 0 2px 8px rgba(var(--shadow-ink),.05);
+  --shadow-md: 0 1px 2px rgba(var(--shadow-ink),.06), 0 8px 24px rgba(var(--shadow-ink),.08);
+
+  --wrap: 1160px;
+  --wrap-text: 720px;   /* structure : titres, sections               */
+  --wrap-read: 560px;   /* paragraphes : ~72 caractères par ligne     */
+  --header-h: 80px;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+/* ══ MOUVEMENT ════════════════════════════════════════════════════
+   Trois règles, pas trente.
+   1. Tout ce qui répond au curseur le montre en moins de 200 ms.
+   2. Le contenu se révèle une fois, à l'entrée dans le champ. Il est
+      VISIBLE par défaut : la classe .reveal n'est posée que par le JS,
+      donc si le script ne se charge pas, rien ne manque.
+   3. prefers-reduced-motion neutralise l'ensemble, sans exception.   */
+
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.is-in {
+  opacity: 1; transform: none;
+  transition: opacity .55s cubic-bezier(.22,.61,.36,1),
+              transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.reveal:nth-child(2) { transition-delay: .07s; }
+.reveal:nth-child(3) { transition-delay: .14s; }
+.reveal:nth-child(4) { transition-delay: .21s; }
+.reveal:nth-child(5) { transition-delay: .28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.is-in { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* L'en-tête est collant : sans cette marge, une cible d'ancre arrive
+   sous la barre et son titre est masqué. */
+[id] { scroll-margin-top: calc(var(--header-h) + var(--s-4)); }
+
+body {
+  font-family: var(--font);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--fs-4);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Le lissage sans sous-pixels allège le texte : bénéfique en clair sur
+   fond sombre, défavorable en navy sur blanc. Réservé au sombre. */
+.hero, .page-hero, .bg-navy, .cta-strip, .site-footer {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--orange-text); }
+a:hover { color: var(--ph-navy); }
+
+:focus-visible {
+  outline: 2px solid var(--orange-text);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+/* Sur fond navy, --orange-text tombe à 1,9:1 : l'anneau de focus y
+   serait invisible. --ph-orange y vaut 5,6:1. Sans cette surcharge,
+   une trentaine de liens par page seraient inatteignables au clavier. */
+.hero :focus-visible, .page-hero :focus-visible,
+.bg-navy :focus-visible, .cta-strip :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--ph-orange);
+}
+/* Sur l'aplat orange, --orange-text tombe a 2,11:1 : le navy y
+   vaut 5,64:1. */
+.action-band :focus-visible { outline-color: var(--ph-navy); }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--ph-navy); color: var(--ph-white);
+  padding: var(--s-3) var(--s-5); font-size: var(--fs-3); font-weight: 700;
+}
+.skip-link:focus { left: 0; color: var(--ph-white); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   TYPOGRAPHIE
+   ═══════════════════════════════════════════════════════════════════ */
+
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; letter-spacing: -.015em; }
+
+.h-xl { font-size: var(--fs-9); }
+.h-lg { font-size: var(--fs-8); }
+.h-md { font-size: var(--fs-7); line-height: 1.25; }
+.h-sm { font-size: var(--fs-6); line-height: 1.3; letter-spacing: -.01em; }
+
+/* Le fragment de titre en orange : signature éditoriale du site,
+   prescrite au §21 du cadrage. Un seul fragment par titre. */
+.title-accent { color: var(--orange-title); }
+.bg-navy .title-accent, .hero .title-accent,
+.page-hero .title-accent, .cta-strip .title-accent { color: var(--ph-orange); }
+
+/* §2.7 — eviter l'orange systematique sur les surtitres. Le navy
+   suffit a les distinguer du corps de texte, et libere l'orange
+   pour le CTA du meme bloc. */
+.eyebrow {
+  display: block; font-size: var(--fs-1); font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ph-navy);
+  margin-bottom: var(--s-3);
+}
+.bg-navy .eyebrow, .hero .eyebrow, .page-hero .eyebrow { color: var(--ph-orange); }
+
+.lead { font-size: var(--fs-5); line-height: 1.6; color: var(--body); }
+.bg-navy .lead, .hero .lead, .page-hero .lead { color: rgba(255,255,255,.86); }
+
+p + p { margin-top: var(--s-4); }
+.note { font-size: var(--fs-2); color: var(--body); }
+
+/* Le filet orange court : marqueur de section, jamais décoratif seul. */
+/* §2.7 — le filet orange peut rester un marqueur de marque, mais
+   pas a chaque section : sa repetition systematique donne un effet
+   « composant de template ». Il est donc navy par defaut, et ne
+   passe en orange que la ou il signe vraiment (.is-brand).
+   Sur aplat navy il reste orange : c'est le seul fond ou l'orange
+   travaille sans concurrence. */
+.rule { width: 44px; height: 3px; background: var(--ph-navy); margin-bottom: var(--s-5); }
+.rule.is-brand { background: var(--ph-orange); }
+.bg-navy .rule, .hero .rule, .page-hero .rule, .cta-strip .rule { background: var(--ph-orange); }
+
+/* La signature métier verrouillée. Le texte et l'ordre des trois mots
+   sont figés par le §2 de la charte : ne pas reformuler, ne pas
+   abréger, ne pas réordonner. Les séparateurs sont toujours orange. */
+.baseline {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3);
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; font-style: normal; color: var(--ink);
+}
+.baseline i { font-style: normal; }
+.baseline .sep {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--ph-orange); flex: none;
+}
+.bg-navy .baseline, .hero .baseline,
+.page-hero .baseline, .site-footer .baseline { color: var(--ph-white); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MISE EN PAGE
+   ═══════════════════════════════════════════════════════════════════ */
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
+
+.section { padding: var(--s-9) 0; }
+.section-sm { padding: var(--s-8) 0; }
+.section-lg { padding: var(--s-10) 0; }
+
+/* L'ivoire crée les zones de respiration prescrites au §9 : il ne
+   porte jamais l'information principale, il la sépare. */
+.bg-alt  { background: var(--paper-alt); }
+.bg-navy { background: var(--ph-navy); color: var(--ph-white); }
+.bg-navy h1, .bg-navy h2, .bg-navy h3 { color: var(--ph-white); }
+.bg-navy p { color: rgba(255,255,255,.82); }
+
+.section-head { max-width: var(--wrap-text); margin-bottom: var(--s-8); }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head.center .rule { margin-left: auto; margin-right: auto; }
+.section-head .lead { margin-top: var(--s-5); max-width: var(--wrap-read); }
+.prose p, .prose li, .faq-item .faq-body p { max-width: var(--wrap-read); }
+
+.text-col { max-width: var(--wrap-text); }
+.mt-2 { margin-top: var(--s-2); }
+.mt-3 { margin-top: var(--s-3); } .mt-4 { margin-top: var(--s-4); }
+.mt-5 { margin-top: var(--s-5); } .mt-6 { margin-top: var(--s-6); }
+.mt-7 { margin-top: var(--s-7); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   EN-TÊTE
+   ═══════════════════════════════════════════════════════════════════ */
+
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--line);
+  height: var(--header-h);
+  display: flex; align-items: center;
+}
+.site-header .wrap { display: flex; align-items: center; gap: var(--s-5); }
+
+.brand { display: flex; align-items: center; flex: none; }
+/* Hauteur pilotée, largeur automatique : le wordmark garde sa
+   géométrie et son espacement, verrouillés au §3 de la charte. */
+.brand img { height: 34px; width: auto; }
+
+.site-nav { margin-left: auto; display: flex; align-items: center; gap: var(--s-6); }
+.site-nav > a {
+  white-space: nowrap;
+  font-size: var(--fs-3); font-weight: 600; color: var(--ink);
+  text-decoration: none; padding: var(--s-2) 0; position: relative;
+  transition: color .18s ease;
+}
+.site-nav > a:hover { color: var(--orange-text); }
+/* L'état actif est un filet orange, pas un fond : la charte réserve
+   l'orange aux accents et proscrit les grandes surfaces (§6.8). */
+.site-nav > a[aria-current="page"] { color: var(--ink); }
+.site-nav > a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px; background: var(--ph-orange);
+}
+.site-nav .btn { padding: var(--s-3) var(--s-5); }
+
+.header-tel {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-size: var(--fs-3); font-weight: 700; color: var(--ink);
+  text-decoration: none; white-space: nowrap;
+}
+.header-tel:hover { color: var(--orange-text); }
+.header-tel svg { color: var(--ph-orange); flex: none; }
+
+.nav-toggle {
+  display: none; margin-left: auto; background: none; border: 0;
+  width: 44px; height: 44px; padding: 10px; cursor: pointer;
+  flex-direction: column; justify-content: center; gap: 5px;
+}
+.nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; }
+
+/* Entre 1180 et 1440 px, le menu complet et le numero en clair ne
+   tiennent pas ensemble : l'ajout de « Réalisations » a fait deborder
+   la barre de 36 px a 1280. On masque le NUMERO — l'icone reste, et
+   reste cliquable — plutot que de basculer en menu compact, ce qui
+   aurait touche tous les portables 1366.
+   A reverifier a chaque entree ajoutee au menu. */
+@media (max-width: 1439px) {
+  .header-tel span { display: none; }
+  /* Reduit au picto, le lien tombait a 31 px : au-dessus du minimum
+     de 24 px du WCAG 2.5.8, mais inconfortable au doigt. On le
+     ramene a 44 px, la cible recommandee. */
+  .header-tel {
+    padding: 0; min-width: 44px; min-height: 44px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1180px) {
+  .nav-toggle { display: flex; }
+  .header-tel { margin-left: auto; }
+  .site-nav {
+    position: fixed; inset: var(--header-h) 0 auto 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: var(--s-4) var(--s-5) var(--s-6);
+    box-shadow: var(--shadow-md);
+    display: none;
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav > a { padding: var(--s-4) 0; border-bottom: 1px solid var(--line-soft); font-size: var(--fs-4); }
+  .site-nav > a[aria-current="page"]::after { display: none; }
+  .site-nav > a[aria-current="page"]:not(.btn) { color: var(--orange-text); }
+  .site-nav .btn { margin-top: var(--s-5); justify-content: center; }
+  body.nav-open { overflow: hidden; }
+}
+/* Sur mobile le hero doit laisser voir la ligne de services : sans
+   cette reduction elle tombe sous la flottaison. */
+@media (max-width: 760px) {
+  .hero .wrap { padding-top: var(--s-8); padding-bottom: var(--s-8); }
+  .page-hero .wrap { padding-top: var(--s-7); padding-bottom: var(--s-7); }
+}
+
+@media (max-width: 560px) {
+  .header-tel span { display: none; }
+  .header-tel { padding: var(--s-3); }
+  .brand img { height: 28px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOUTONS
+   L'orange est un fond de CTA — c'est son rôle au §4. Le texte posé
+   dessus est le navy, pas le blanc : blanc sur --ph-orange vaut
+   2,87:1, navy sur --ph-orange vaut 5,6:1.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  padding: var(--s-4) var(--s-6); border-radius: var(--r-md);
+  font-size: var(--fs-3); font-weight: 700; line-height: 1.2;
+  text-decoration: none; border: 2px solid transparent; cursor: pointer;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn-primary { background: var(--ph-orange); color: var(--ph-navy); }
+.btn-primary:hover { background: var(--orange-title); color: var(--ph-navy); }
+
+.btn-navy { background: var(--ph-navy); color: var(--ph-white); }
+.btn-navy:hover { background: #1B3A56; color: var(--ph-white); }
+
+.btn-outline { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+.btn-outline:hover { border-color: var(--ph-navy); color: var(--ink); background: transparent; }
+
+.bg-navy .btn-outline, .hero .btn-outline,
+.page-hero .btn-outline, .cta-strip .btn-outline {
+  border-color: rgba(255,255,255,.4); color: var(--ph-white);
+}
+.bg-navy .btn-outline:hover, .hero .btn-outline:hover,
+.page-hero .btn-outline:hover, .cta-strip .btn-outline:hover {
+  border-color: var(--ph-white); color: var(--ph-white);
+}
+
+.btn-sm { padding: var(--s-3) var(--s-5); font-size: var(--fs-2); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-6); }
+
+/* Lien fléché : alternative légère au bouton, pour ne pas multiplier
+   les pavés orange dans une même page. */
+.link-arrow {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-weight: 700; font-size: var(--fs-3); color: var(--orange-text);
+  text-decoration: none;
+}
+.link-arrow::after { content: "→"; transition: transform .18s ease; }
+.link-arrow:hover { color: var(--ph-navy); }
+.link-arrow:hover::after { transform: translateX(3px); }
+.bg-navy .link-arrow, .cta-strip .link-arrow { color: var(--ph-orange); }
+.bg-navy .link-arrow:hover, .cta-strip .link-arrow:hover { color: var(--ph-white); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════════════ */
+
+.hero { background: var(--ph-navy); color: var(--ph-white); position: relative; overflow: hidden; }
+.hero .wrap { padding-top: var(--s-9); padding-bottom: var(--s-9); position: relative; z-index: 2; }
+.hero h1 { color: var(--ph-white); max-width: 15ch; }
+.hero .hero-sub { margin-top: var(--s-6); max-width: 60ch; font-size: var(--fs-5); line-height: 1.6; color: rgba(255,255,255,.86); }
+.hero .hero-sub strong { color: var(--ph-white); font-weight: 700; }
+.hero .baseline { margin-top: var(--s-7); }
+
+/* Le hero attend une photographie d'habitat (§24 : 1 hero). Tant
+   qu'elle n'existe pas, l'aplat navy tient seul — il ne simule pas
+   une image absente. */
+.hero-media { position: absolute; inset: 0; z-index: 1; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg, rgba(15,34,51,.94) 0%, rgba(15,34,51,.86) 46%, rgba(15,34,51,.55) 100%);
+}
+
+.page-hero { background: var(--ph-navy); color: var(--ph-white); }
+.page-hero .wrap { padding-top: var(--s-8); padding-bottom: var(--s-8); }
+.page-hero h1 { color: var(--ph-white); max-width: 18ch; }
+.page-hero .lead { margin-top: var(--s-5); max-width: 62ch; }
+
+/* Disponibilité — deux régimes, hiérarchisés.
+   Le 24/7 du dépannage est mis en avant ; l'horaire des équipes
+   projet le suit en retrait, pour qu'aucun visiteur ne confonde
+   les deux. */
+.dispo {
+  margin-top: var(--s-6); padding-left: var(--s-4);
+  border-left: 3px solid var(--ph-orange);
+  font-size: var(--fs-4); color: var(--ph-white);
+}
+.dispo-note { font-size: var(--fs-2); color: rgba(255,255,255,.72); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BANDEAU DE RÉASSURANCE
+   Quatre promesses, pas quatre cartes : ni fond, ni bordure, ni ombre.
+   Un filet orange en tête suffit à les séparer (§21 : limiter les cards).
+   ═══════════════════════════════════════════════════════════════════ */
+
+.assur { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-7); }
+.assur-item { border-top: 2px solid var(--ph-navy); padding-top: var(--s-4); }
+.assur-item h3 {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink);
+}
+.assur-item p { margin-top: var(--s-3); font-size: var(--fs-3); color: var(--body); }
+@media (max-width: 900px) { .assur { grid-template-columns: repeat(2, 1fr); gap: var(--s-6); } }
+@media (max-width: 520px) { .assur { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LES TROIS UNIVERS
+   Bandes pleine largeur alternées, jamais un triptyque de cartes : les
+   trois territoires doivent peser autant l'un que l'autre, ce qu'une
+   rangée de cartes de 380 px ne permet pas.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.univers { border-top: 1px solid var(--line); }
+.univers:first-of-type { border-top: 0; }
+.univers .wrap {
+  display: grid; grid-template-columns: 1fr 1.15fr; gap: var(--s-9);
+  align-items: start; padding-top: var(--s-9); padding-bottom: var(--s-9);
+}
+/* §2.7 — le numero n'a pas besoin d'etre orange. Un grand chiffre
+   en navy clair porte mieux la hierarchie, et le point orange qui
+   le precede suffit comme micro-accent. */
+.univers-num {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .14em;
+  color: var(--body); text-transform: uppercase;
+}
+.univers-num::before {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--ph-orange); margin-right: var(--s-2);
+}
+.univers h2 { margin-top: var(--s-4); }
+.univers h2 .u-lede { display: block; font-size: var(--fs-6); font-weight: 400; color: var(--body); margin-top: var(--s-3); letter-spacing: 0; line-height: 1.4; }
+.univers-body > p { color: var(--body); }
+.univers-body > p:first-child { margin-top: 0; }
+
+/* La liste de métiers reste une énumération en ligne. La transformer
+   en grille de pastilles la ferait lire comme un catalogue. */
+.métiers, .metiers {
+  margin-top: var(--s-6); padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-3); font-weight: 600; color: var(--ink); line-height: 2;
+}
+.metiers .sep { color: var(--ph-orange); padding: 0 var(--s-1); }
+
+@media (max-width: 900px) {
+  .univers .wrap { grid-template-columns: 1fr; gap: var(--s-6); padding-top: var(--s-8); padding-bottom: var(--s-8); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BLOC ÉDITORIAL TEXTE / PHOTO
+   L'alternance prescrite au §21. La colonne texte ne dépasse jamais
+   la largeur de lecture.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-9); align-items: center; }
+.split.reverse .split-media { order: -1; }
+.split-body > p { color: var(--body); }
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: var(--s-6); }
+  .split.reverse .split-media { order: 0; }
+}
+
+/* ══ EMPLACEMENT PHOTO ══════════════════════════════════════════
+   Regime PUBLIC. Un aplat ivoire, meme ratio et meme position que la
+   future image, sans bordure ni etiquette.
+
+   L'absence de photo n'est pas fatale : la mise en page tient. Ce
+   qui l'etait, c'est de l'ANNONCER — bordure pointillee, mention
+   « PHOTO A FOURNIR », specification technique. Entre « je ne vois
+   pas de photo » et « je vois qu'il manque une photo » il y a toute
+   la distance entre la sobriete et le chantier.
+
+   Le brief de prise de vue n'a pas disparu : il est passe en
+   commentaire HTML juste au-dessus de chaque emplacement.
+   L'ivoire tient ici exactement le role que lui donne le §4 de la
+   charte — surface secondaire chaleureuse, univers habitat.       */
+.photo-slot {
+  background: var(--paper-alt);
+  border-radius: var(--r-lg);
+  min-height: 300px;
+}
+.photo-slot.wide { min-height: 380px; }
+.bg-alt .photo-slot { background: var(--ph-white); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   TIMELINE — NOTRE FAÇON DE TRAVAILLER
+   Le §10 du cadrage l'exige explicitement : « À présenter sous forme
+   de timeline, pas de 5 cards. »
+   ═══════════════════════════════════════════════════════════════════ */
+
+.timeline { position: relative; max-width: 860px; }
+.timeline::before {
+  content: ""; position: absolute; left: 15px; top: 10px; bottom: 10px;
+  width: 2px; background: var(--line);
+}
+.tl-step { position: relative; padding-left: var(--s-8); padding-bottom: var(--s-8); }
+.tl-step:last-child { padding-bottom: 0; }
+/* Seule la premiere pastille est orange : elle marque le depart
+   du parcours, les suivantes n'ont pas a le repeter. */
+.tl-step:first-child::before { background: var(--ph-orange); }
+.tl-step::before {
+  content: ""; position: absolute; left: 8px; top: 8px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--ph-navy); border: 4px solid var(--paper);
+}
+.bg-alt .tl-step::before { border-color: var(--paper-alt); }
+.tl-num {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .14em;
+  color: var(--body); text-transform: uppercase;
+}
+.tl-step h3 { margin-top: var(--s-2); }
+.tl-step p { margin-top: var(--s-3); color: var(--body); max-width: 62ch; }
+@media (max-width: 560px) { .tl-step { padding-left: var(--s-7); } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BUDGET — INDISPENSABLE / RECOMMANDÉ / OPTIONNEL
+   « Cette section constitue un élément de différenciation PH et doit
+   avoir une vraie présence visuelle » (§8). D'où l'aplat navy pleine
+   largeur, le seul du site avec le hero et le pied de page.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.budget-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--dark-line); margin-top: var(--s-8); }
+.budget-item { background: var(--ph-navy); padding: var(--s-7) var(--s-6); }
+.budget-item h3 {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ph-orange);
+}
+.budget-item p { margin-top: var(--s-4); color: rgba(255,255,255,.82); font-size: var(--fs-3); }
+@media (max-width: 800px) { .budget-grid { grid-template-columns: 1fr; } }
+
+/* La citation forte : un seul filet orange, pas de guillemets géants
+   ni d'italique — le cadrage proscrit l'esthétique décorative. */
+.pull {
+  border-left: 3px solid var(--ph-orange); padding-left: var(--s-5);
+  font-size: var(--fs-5); font-weight: 700; line-height: 1.5;
+  color: var(--ink); max-width: 62ch;
+}
+.bg-navy .pull, .cta-strip .pull { color: var(--ph-white); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ÉNUMÉRATIONS — ENGAGEMENTS, PUBLICS
+   « Ne pas présenter les 8 engagements sous forme de 8 cards
+   identiques » (§11). Deux colonnes de lignes séparées par un filet.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.enum { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--s-8); }
+.enum-item { padding: var(--s-5) 0; border-top: 1px solid var(--line); }
+.bg-navy .enum-item { border-color: var(--dark-line); }
+.enum-item h3 {
+  font-size: var(--fs-1); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink);
+}
+.bg-navy .enum-item h3 { color: var(--ph-orange); }
+.bg-navy .enum-item p  { color: rgba(255,255,255,.82); }
+.enum-item p { margin-top: var(--s-2); font-size: var(--fs-3); color: var(--body); }
+@media (max-width: 800px) { .enum { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRESTATIONS DÉTAILLÉES — page Rénovation
+   Lignes, pas cartes. Le titre porte, le texte explique.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.presta { border-top: 1px solid var(--line); }
+.presta-item {
+  display: grid; grid-template-columns: 320px 1fr; gap: var(--s-7);
+  padding: var(--s-6) 0; border-bottom: 1px solid var(--line);
+}
+.presta-item h3 { font-size: var(--fs-6); letter-spacing: -.01em; }
+.presta-item p { color: var(--body); margin: 0; }
+@media (max-width: 800px) {
+  .presta-item { grid-template-columns: 1fr; gap: var(--s-3); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RÉALISATIONS
+   Aucun projet fictif, aucune image de banque : le §13 l'interdit
+   formellement. Cette page expose le FORMAT de restitution et attend
+   les vrais chantiers.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.reals-format { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6) var(--s-7); margin-top: var(--s-7); }
+.reals-format > div { border-top: 2px solid var(--ph-navy); padding-top: var(--s-4); }
+.reals-format h3 { font-size: var(--fs-1); letter-spacing: .1em; text-transform: uppercase; }
+.reals-format p { margin-top: var(--s-2); font-size: var(--fs-3); color: var(--body); }
+@media (max-width: 800px) { .reals-format { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .reals-format { grid-template-columns: 1fr; } }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-6); }
+.tag {
+  font-size: var(--fs-2); font-weight: 600; color: var(--ink);
+  background: var(--paper-alt); border: 1px solid var(--line);
+  border-radius: var(--r-sm); padding: var(--s-2) var(--s-4);
+}
+.bg-alt .tag { background: var(--paper); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BANDEAU CTA
+   ═══════════════════════════════════════════════════════════════════ */
+
+.cta-strip { background: var(--ph-navy); color: var(--ph-white); }
+.cta-strip .wrap { padding-top: var(--s-9); padding-bottom: var(--s-9); }
+.cta-strip h2 { color: var(--ph-white); max-width: 16ch; }
+.cta-strip p { margin-top: var(--s-5); max-width: 60ch; color: rgba(255,255,255,.82); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FORMULAIRES — DEUX PARCOURS (§18)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.form-switch { display: flex; gap: var(--s-3); margin-bottom: var(--s-7); flex-wrap: wrap; }
+.form-switch button {
+  font-family: var(--font); font-size: var(--fs-3); font-weight: 700;
+  padding: var(--s-4) var(--s-6); border-radius: var(--r-md); cursor: pointer;
+  border: 2px solid var(--line-strong); background: transparent; color: var(--ink);
+  transition: border-color .18s ease, background-color .18s ease;
+}
+.form-switch button[aria-selected="true"] {
+  border-color: var(--ph-navy); background: var(--ph-navy); color: var(--ph-white);
+}
+.form-switch button:hover { border-color: var(--ph-navy); }
+
+.form-panel[hidden] { display: none; }
+
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+.field.full { grid-column: 1 / -1; }
+@media (max-width: 700px) { .field-grid { grid-template-columns: 1fr; } }
+
+.field label { display: block; font-size: var(--fs-2); font-weight: 700; margin-bottom: var(--s-2); color: var(--ink); }
+.field .hint { font-weight: 400; color: var(--label); }
+.field input, .field select, .field textarea {
+  width: 100%; font-family: var(--font); font-size: var(--fs-3); color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line-strong);
+  border-radius: var(--r-md); padding: var(--s-4);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.field textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--ph-navy);
+  box-shadow: 0 0 0 3px rgba(15,34,51,.12);
+}
+.field input:user-invalid, .field textarea:user-invalid { border-color: var(--ko); }
+
+/* Piège à robots — invisible pour l'utilisateur, lu par site.js avant
+   tout envoi. Ne pas supprimer. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.form-consent { margin-top: var(--s-5); font-size: var(--fs-2); color: var(--body); }
+.form-status { margin-top: var(--s-5); font-size: var(--fs-3); font-weight: 700; }
+.form-status.is-ok { color: var(--ok); }
+.form-status.is-ko { color: var(--ko); }
+
+/* Le composant .todo a ete retire du build public (§42). Il servait
+   a rendre visibles les points du §23 non arbitres ; jusqu'a 7,3 %
+   d'une page etait ainsi un memo interne encadre d'orange. Les
+   points restants sont suivis dans le README, pas a l'ecran.      */
+
+/* ═══════════════════════════════════════════════════════════════════
+   PIED DE PAGE
+   ═══════════════════════════════════════════════════════════════════ */
+
+.site-footer { background: var(--ph-navy); color: var(--ph-white); padding-top: var(--s-9); }
+.site-footer .wrap { padding-bottom: var(--s-6); }
+
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--s-8); }
+.footer-brand img { height: 76px; width: auto; }
+.footer-brand p { margin-top: var(--s-5); font-size: var(--fs-3); color: rgba(255,255,255,.72); max-width: 40ch; }
+
+.footer-col h2 { font-size: var(--fs-1); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ph-orange); margin-bottom: var(--s-4); }
+.footer-col a, .footer-col p {
+  display: block; font-size: var(--fs-3); color: rgba(255,255,255,.78);
+  text-decoration: none; margin-top: var(--s-2); line-height: 1.6;
+}
+.footer-col a:hover { color: var(--ph-white); }
+
+.footer-bottom {
+  margin-top: var(--s-7); padding: var(--s-5) 0; border-top: 1px solid var(--dark-line);
+  display: flex; flex-wrap: wrap; gap: var(--s-4); justify-content: space-between;
+  font-size: var(--fs-2); color: rgba(255,255,255,.6);
+}
+.footer-legal-links { display: flex; gap: var(--s-5); flex-wrap: wrap; }
+.footer-legal-links a { color: rgba(255,255,255,.6); text-decoration: none; }
+.footer-legal-links a:hover { color: var(--ph-white); }
+
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--s-7); } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PAGES LÉGALES ET 404
+   ═══════════════════════════════════════════════════════════════════ */
+
+.prose { max-width: var(--wrap-text); }
+.prose h2 { font-size: var(--fs-7); margin-top: var(--s-8); }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: var(--fs-6); margin-top: var(--s-6); }
+.prose p, .prose li { color: var(--body); }
+.prose ul, .prose ol { margin: var(--s-4) 0 0 var(--s-5); }
+.prose li { margin-top: var(--s-2); }
+
+.page-404 { text-align: center; padding: var(--s-10) 0; }
+.page-404 .btn-row { justify-content: center; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   TUNNEL PARTICULIER — motifs repris de sosfonte.com
+   Pronto Habitat s'adresse au même profil que SOS Fonte : un
+   particulier qui arrive avec un problème, pas un donneur d'ordre.
+   D'où ces composants, absents du socle FX Services et empruntés au
+   site SF : bandeau d'action, barre de confiance, chiffres, canal
+   WhatsApp, barre collante mobile, témoignages, zone d'intervention.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── BANDEAU D'ACTION ────────────────────────────────────────────
+   L'équivalent de .urgence-band chez SF. Il tient sur une ligne, sur
+   un aplat orange assumé — c'est le seul endroit du site où l'orange
+   couvre une surface, et il reste une bande de 56 px : la règle §6.8
+   proscrit les GRANDES surfaces orange, pas l'accent affirmé.
+   Texte navy sur orange : 5,6:1.                                    */
+.action-band {
+  background: var(--paper-alt); color: var(--ink);
+  padding: var(--s-5);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.action-band .wrap {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: var(--s-3) var(--s-5); text-align: center;
+}
+.action-band p { margin: 0; font-size: var(--fs-3); font-weight: 600; }
+.action-band a {
+  color: var(--orange-text); font-weight: 700; text-decoration: none;
+  border-bottom: 2px solid currentColor; padding-bottom: 1px;
+  white-space: nowrap;
+}
+.action-band a:hover { color: var(--ph-navy); }
+
+/* ── BARRE DE CONFIANCE ──────────────────────────────────────────
+   .hero-trust chez SF. Trois preuves courtes, sous les CTA du hero.
+   Les libellés sont pilotés par la configuration : tant que le §23
+   n'a pas tranché les délais et la décennale, ils affichent ce qui
+   est réellement tenable, et rien d'autre.                          */
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-7); padding-top: var(--s-5);
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.trust-item {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-size: var(--fs-2); font-weight: 600; color: rgba(255,255,255,.9);
+}
+.trust-item svg { color: var(--ph-orange); flex: none; }
+.section .trust-row, .bg-alt .trust-row { border-top-color: var(--line); }
+.section .trust-item, .bg-alt .trust-item { color: var(--ink); }
+
+/* ── CHIFFRES CLÉS ───────────────────────────────────────────────
+   .hero-stats chez SF. ⚠ Aucun chiffre n'est écrit en dur ici : le
+   §23 ne fournit ni ancienneté, ni volume de chantiers, ni délai
+   vérifiable pour Pronto Habitat. Le composant existe, la section
+   reste masquée tant que les valeurs ne sont pas fournies.          */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--dark-line); margin-top: var(--s-8);
+}
+.stat-box { background: var(--ph-navy); padding: var(--s-6) var(--s-5); text-align: center; }
+.bg-alt .stat-box, .section .stat-box { background: var(--paper-alt); }
+.stat-num {
+  font-size: var(--fs-8); font-weight: 700; line-height: 1;
+  color: var(--ph-white); letter-spacing: -.02em;
+}
+.section .stat-num, .bg-alt .stat-num { color: var(--ink); }
+.stat-num span { font-size: .5em; color: var(--ph-orange); margin-left: 2px; }
+.stat-label {
+  margin-top: var(--s-3); font-size: var(--fs-1); font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.62);
+}
+.section .stat-label, .bg-alt .stat-label { color: var(--body); }
+@media (max-width: 620px) { .stats-row { grid-template-columns: 1fr; } }
+
+/* ── WHATSAPP ────────────────────────────────────────────────────
+   Le canal principal du parcours particulier chez SF, et celui qui
+   manquait le plus à PH : une personne qui photographie une fuite
+   envoie la photo par WhatsApp, pas par formulaire.
+   Le vert est la couleur officielle du service, pas un ajout à la
+   palette : il n'apparaît que sur ce bouton et dans l'agent.
+   Texte vert très sombre pour tenir le contraste.                   */
+.btn-wa { background: #25D366; color: #06301A; }
+.btn-wa:hover { background: #1EBE5C; color: #06301A; }
+.btn-wa svg { flex: none; }
+/* Masqué tant que le numéro WhatsApp n'est pas renseigné (§23) :
+   site.js ne pose l'attribut href que si le numéro existe. Un bouton
+   qui ouvre un WhatsApp vide est pire qu'un bouton absent. */
+[data-ph-wa]:not([href]) { display: none; }
+
+/* ── BARRE D'ACTION COLLANTE — MOBILE ────────────────────────────
+   Sur mobile, le visiteur d'un site de dépannage décide en bas de
+   page ou n'importe où au milieu. SF garde l'appel à portée de
+   pouce en permanence ; PH fait de même, sans jamais annoncer de
+   délai (§17).                                                     */
+.action-bar { display: none; }
+@media (max-width: 760px) {
+  .action-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+    display: flex; gap: var(--s-2);
+    padding: var(--s-3) var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.97);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-top: 1px solid var(--line);
+  }
+  .action-bar .btn { flex: 1; padding: var(--s-4) var(--s-3); font-size: var(--fs-2); }
+  /* Sans cette réserve, le pied de page passe sous la barre. */
+  body { padding-bottom: 76px; }
+}
+
+/* ── TÉMOIGNAGES ─────────────────────────────────────────────────
+   ⚠ Aucun avis n'est écrit en dur. Le §23 place « témoignages réels
+   éventuels » parmi les points à valider, et le §13 interdit de
+   raconter le travail autrement qu'avec du réel. La section porte
+   donc le brief de collecte, comme les blocs photo.                 */
+.avis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); margin-top: var(--s-7); }
+.avis {
+  border-top: 3px solid var(--ph-orange); padding-top: var(--s-5);
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.avis blockquote { font-size: var(--fs-3); line-height: 1.6; color: var(--ink); }
+.avis cite { font-style: normal; font-size: var(--fs-2); font-weight: 700; color: var(--body); }
+@media (max-width: 860px) { .avis-grid { grid-template-columns: 1fr; } }
+
+/* ── ZONE D'INTERVENTION ─────────────────────────────────────────
+   .zone-section chez SF, qui y accroche ses pages locales. Chez PH
+   la liste des villes vient de PHC.cities : tant qu'elle est vide,
+   site.js masque la section plutôt que d'inventer un périmètre.     */
+.zone-list { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-6); }
+.zone-list a, .zone-list span {
+  font-size: var(--fs-2); font-weight: 600; text-decoration: none;
+  color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  padding: var(--s-2) var(--s-4);
+}
+.zone-list a:hover { border-color: var(--ph-navy); color: var(--ink); }
+
+/* ── FAQ ─────────────────────────────────────────────────────────
+   <details> natifs : aucun JS, accessibles par défaut, et le
+   contenu reste lisible par un moteur de recherche même replié.    */
+.faq-list { max-width: var(--wrap-text); border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: var(--s-5) var(--s-6) var(--s-5) 0;
+  font-size: var(--fs-5); font-weight: 700; color: var(--ink);
+  position: relative; line-height: 1.4;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+"; position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%); font-size: 24px; font-weight: 400;
+  color: var(--ph-orange); transition: transform .2s ease;
+}
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item summary:hover { color: var(--orange-text); }
+.faq-item .faq-body { padding: 0 var(--s-6) var(--s-5) 0; }
+.faq-item .faq-body p { color: var(--body); }
+.faq-item .faq-body p:first-child { margin-top: 0; }
+/* @bloc-realisations — sentinelle de regeneration, ne pas retirer */
+
+/* ══════════════════════════════════════════════════════════════════
+   RÉALISATIONS
+   Double entrée : la grille liste les PROJETS, les pages de thème
+   agrègent les mêmes photos par nature de travaux. Aucun fichier
+   n'est dupliqué — c'est le manifeste qui porte les deux axes.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Visible des seuls lecteurs d'ecran. Ni `display:none` ni
+   `visibility:hidden` — les deux retirent l'element de l'arbre
+   d'accessibilite, ce qui annulerait l'annonce. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ── Filtres ────────────────────────────────────────────────────── */
+.filtres {
+  display: flex; flex-wrap: wrap; gap: var(--s-2);
+  margin-bottom: var(--s-7);
+}
+.filtre {
+  font: inherit; font-size: var(--fs-2); cursor: pointer;
+  padding: var(--s-2) var(--s-4);
+  background: transparent; color: var(--body);
+  border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+  transition: color .18s, border-color .18s, background .18s;
+}
+.filtre:hover { color: var(--ink); border-color: var(--ink); }
+.filtre.is-on {
+  background: var(--ph-navy); color: var(--ph-white);
+  border-color: var(--ph-navy);
+}
+.filtre-vide { color: var(--body); font-size: var(--fs-4); }
+
+/* ── Grille des projets ─────────────────────────────────────────── */
+.reals-grid {
+  display: grid; gap: var(--s-7);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+/* `[hidden]` doit l'emporter sur le `display` du composant.
+   Sans cela, `.real-card { display: flex }` — une regle d'auteur —
+   bat le `[hidden] { display: none }` de la feuille navigateur, et
+   les cartes filtrees restent visibles : le filtre ne filtre rien. */
+.real-card[hidden], .theme-item[hidden] { display: none; }
+
+.real-card {
+  display: flex; flex-direction: column;
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: var(--s-5);
+}
+.real-card-img { overflow: hidden; background: var(--paper-alt); }
+.real-card-img img {
+  display: block; width: 100%; height: auto;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.real-card:hover .real-card-img img { transform: scale(1.03); }
+.real-card:focus-visible { outline: 2px solid var(--ph-navy); outline-offset: 4px; }
+.real-card-body { padding-top: var(--s-5); }
+.real-card-body h2 { margin-top: var(--s-2); }
+.real-card:hover h2 { color: var(--orange-text); }
+.real-card-lieu {
+  margin-top: var(--s-2);
+  font-size: var(--fs-2); color: var(--label);
+}
+.real-card-chapo {
+  margin-top: var(--s-3);
+  font-size: var(--fs-3); color: var(--body);
+  max-width: 46ch;
+}
+.real-lieu {
+  margin-top: var(--s-3);
+  font-size: var(--fs-3); color: rgba(255,255,255,.72);
+}
+
+/* ── Avant / après ──────────────────────────────────────────────────
+   Les deux images sortent du même ratio : une comparaison qui change
+   de cadrage ment sur le recadrage autant que sur le résultat.      */
+.duos { display: grid; gap: var(--s-8); }
+.duo { display: grid; gap: var(--s-4); grid-template-columns: 1fr 1fr; }
+.duo figure { position: relative; margin: 0; }
+.duo img { display: block; width: 100%; height: auto; }
+.duo-tag {
+  position: absolute; top: 0; left: 0; z-index: 1;
+  font-size: var(--fs-1); font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: var(--s-2) var(--s-3);
+  background: var(--ph-navy); color: var(--ph-white);
+}
+.duo-tag.is-apres { background: var(--ph-orange); color: var(--ph-navy); }
+@media (max-width: 700px) {
+  .duo { grid-template-columns: 1fr; gap: var(--s-3); }
+}
+
+/* ── Métiers mobilisés ──────────────────────────────────────────── */
+.lots {
+  list-style: none; display: grid; gap: var(--s-3);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  max-width: var(--wrap-text);
+}
+.lots li {
+  position: relative; padding-left: var(--s-5);
+  font-size: var(--fs-3); color: var(--body);
+}
+.lots li::before {
+  content: ""; position: absolute; left: 0; top: .62em;
+  width: 8px; height: 1px; background: var(--ph-orange);
+}
+
+/* ── Galerie ────────────────────────────────────────────────────── */
+.galerie {
+  display: grid; gap: var(--s-6);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.galerie figure { margin: 0; }
+.galerie img { display: block; width: 100%; height: auto; }
+.galerie figcaption {
+  margin-top: var(--s-3);
+  font-size: var(--fs-2); color: var(--body);
+}
+
+/* ── Pages de thème ─────────────────────────────────────────────── */
+.theme-grid {
+  display: grid; gap: var(--s-6);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.theme-item { margin: 0; }
+.theme-item img { display: block; width: 100%; height: auto; }
+.theme-item figcaption {
+  margin-top: var(--s-3); font-size: var(--fs-2);
+  display: flex; flex-direction: column; gap: var(--s-1);
+}
+.theme-phase {
+  font-size: var(--fs-1); font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--orange-text);
+}
+.theme-item figcaption a { color: var(--ink); text-decoration: none; font-weight: 600; }
+.theme-item figcaption a:hover { color: var(--orange-text); text-decoration: underline; }
+.theme-lieu { color: var(--label); }
+
+/* ── Étiquette cliquable ────────────────────────────────────────── */
+.tag-link {
+  text-decoration: none; transition: color .18s, border-color .18s;
+}
+.tag-link:hover { color: var(--orange-text); border-color: var(--orange-title); }
+.tag-link span { color: var(--label); }
+
+/* Le fil d'Ariane du sur-titre reste lisible sur le hero sombre. */
+.page-hero .eyebrow a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.page-hero .eyebrow a:hover { color: var(--ph-white); }

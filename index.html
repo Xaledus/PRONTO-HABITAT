@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronto Habitat — Dépannage, rénovation et amélioration de l'habitat</title>
+<meta name="description" content="Réparation, rénovation et aménagement de votre logement : un interlocuteur unique, un budget clair et des engagements tenus, jusqu’aux finitions.">
+
+<!-- ⚠ DOMAINE NON ACQUIS — la configuration FX Services indique
+     « prontohabitat : domaine à acheter ». Les URL canoniques et Open
+     Graph ci-dessous sont donc provisoires. À reprendre dans les
+     9 pages HTML et dans sitemap.xml dès l'achat du domaine. -->
+<link rel="canonical" href="https://pronto-habitat.fr/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Pronto Habitat">
+<meta property="og:title" content="Pronto Habitat — Dépannage, rénovation et amélioration de l'habitat">
+<meta property="og:description" content="Réparation, rénovation et aménagement de votre logement avec un interlocuteur unique, un budget clair et des engagements tenus.">
+<meta property="og:url" content="https://pronto-habitat.fr/">
+<!-- og:image volontairement absent : aucune image 1200×630 validée
+     n'existe. Un aperçu cassé nuit plus qu'un aperçu sans visuel.
+     À produire depuis le master logo (§24). -->
+
+<!-- Pas de favicon : le §7 de la charte interdit de définir un
+     symbole avant validation d'un signe propriétaire, et proscrit
+     l'invention d'un pictogramme générique. Point à arbitrer. -->
+<meta name="theme-color" content="#0F2233">
+<link rel="stylesheet" href="assets/css/ph.css?v=6c91dc34">
+<link rel="stylesheet" href="assets/css/lea.css?v=6c91dc34">
+<script src="assets/js/site-config.js?v=6c91dc34" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Pronto Habitat — accueil">
+      <img src="assets/brand/ph-logo-compact-clair.png" alt="Pronto Habitat" width="2000" height="328">
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+      <a href="depannage.html">Dépannage</a>
+      <a href="renovation.html">Rénovation</a>
+      <a href="confort-optimisation.html">Confort &amp; Optimisation</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="pronto-habitat.html">Pronto Habitat</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">Nous contacter</a>
+    </nav>
+    <a class="header-tel" data-ph="phone-link" aria-label="Appeler Pronto Habitat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-ph-text>Téléphone à définir</span></a>
+    <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ══ HERO — §3 ═════════════════════════════════════════════════
+       Photographie réelle, prise sur le chantier d'Enghien-les-Bains.
+       Chargée en priorité : c'est le LCP de la page. Aucune image de
+       banque n'est utilisée sur ce site — §13. -->
+  <section class="hero">
+      <div class="hero-media">
+      <img src="assets/img/site/hero-accueil-1600.webp" srcset="assets/img/site/hero-accueil-1600.webp 1600w, assets/img/site/hero-accueil-1200.webp 1200w, assets/img/site/hero-accueil-800.webp 800w" sizes="100vw" width="1600" height="899" alt="Séjour d’une maison rénovée par Pronto Habitat" fetchpriority="high" decoding="async">
+    </div>
+    <div class="wrap">
+      <h1 class="h-xl">Votre logement.<br><span class="title-accent">Vos projets. Bien pris en charge.</span></h1>
+      <p class="hero-sub">
+        Une réparation à effectuer, une pièce à rénover, une dépendance à aménager ou
+        simplement l'envie d'améliorer votre intérieur&nbsp;?
+        <strong>Pronto Habitat vous accompagne du premier besoin jusqu'aux finitions,
+        avec un interlocuteur unique, un budget clair et des engagements tenus.</strong>
+      </p>
+      <div class="btn-row">
+        <a href="contact.html#projet" class="btn btn-primary">Parler de mon projet</a>
+        <a href="contact.html#depannage" class="btn btn-outline">J'ai besoin d'un dépannage</a>
+        <!-- wa-cta : le href n'est pose par site.js que si le numero
+             WhatsApp existe ; sans lui le CSS masque le bouton (§23). -->
+        <a class="btn btn-wa" data-ph-wa="depannage"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg> WhatsApp</a>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Un interlocuteur identifié</span>
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Périmètre et prix définis avant de commencer</span>
+        <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Aucun travail supplémentaire sans votre accord</span>
+      </div>
+      <div class="baseline">
+        <i>Dépannage</i><span class="sep" aria-hidden="true"></span>
+        <i>Rénovation</i><span class="sep" aria-hidden="true"></span>
+        <i>Aménagement</i><span class="sep" aria-hidden="true"></span>
+        <i>Tous corps d'état</i>
+      </div>
+    </div>
+  </section>
+
+<!-- ══ BANDEAU D'ACTION ══════════════════════════════════════════
+     .urgence-band de sosfonte.com, transpose. Aucune promesse de
+     delai : le §17 l'interdit tant que le dispositif n'est pas
+     reellement assure. -->
+<div class="action-band">
+  <div class="wrap">
+    <p>Un problème chez vous, ou un projet en tête ? Décrivez-le en deux minutes.</p>
+    <a data-ph-wa="depannage">Nous écrire sur WhatsApp</a>
+    <a data-ph-alt href="contact.html#depannage">ou passer par le formulaire</a>
+  </div>
+</div>
+
+
+  <!-- ══ RÉASSURANCE IMMÉDIATE — §3 ════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="wrap">
+      <div class="assur">
+        <div class="assur-item">
+          <h3>Un interlocuteur identifié</h3>
+          <p>Votre besoin est suivi du premier échange jusqu'à la fin de l'intervention.</p>
+        </div>
+        <div class="assur-item">
+          <h3>Un budget expliqué</h3>
+          <p>Le périmètre et le prix sont définis avant de commencer.</p>
+        </div>
+        <div class="assur-item">
+          <h3>Votre logement respecté</h3>
+          <p>Protection des zones de passage, rangement et nettoyage font partie du travail.</p>
+        </div>
+        <div class="assur-item">
+          <h3>Des finitions soignées</h3>
+          <p>Les détails visibles comptent autant que ce qui se trouve derrière le mur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ UNE AUTRE FAÇON DE PARLER TRAVAUX — §4 ════════════════════ -->
+  <section class="section bg-alt">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-body">
+          <div class="rule"></div>
+          <span class="eyebrow">Une autre façon de parler travaux</span>
+          <h2 class="h-lg">Vous nous expliquez votre besoin.<br>Nous nous occupons du reste.</h2>
+          <p class="mt-6">Quand quelque chose ne fonctionne plus, vous voulez que ce soit réglé.</p>
+          <p>Quand vous entreprenez des travaux, vous voulez savoir <strong>combien cela coûtera,
+             combien de temps cela prendra et qui s'en occupera</strong>.</p>
+          <p>Et lorsque plusieurs métiers sont nécessaires, vous ne devriez pas avoir à coordonner
+             vous-même le plombier, l'électricien, le peintre, le carreleur ou le menuisier.</p>
+          <p>C'est précisément le rôle de Pronto Habitat.</p>
+          <p class="pull mt-6">Comprendre votre besoin, vous proposer une solution cohérente
+             et prendre en charge sa réalisation.</p>
+        </div>
+        <div class="split-media">
+          <!-- EMPLACEMENT PHOTO — brief de prise de vue : Chantier protégé et propre. Zone de passage bâchée, matériel rangé, sol protégé — la preuve visuelle de l'engagement « votre logement respecté ». | Prise de vue réelle, chez un client, en cours de chantier. | Format paysage 4:3 · 1200 × 900 px minimum · §24 -->
+          <img src="assets/img/site/chantier-protege-900.webp" srcset="assets/img/site/chantier-protege-900.webp 900w, assets/img/site/chantier-protege-600.webp 600w" sizes="(max-width: 900px) 100vw, 50vw" width="900" height="1200" alt="Sol protégé par un film pendant l’intervention" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LES TROIS UNIVERS — §5 ════════════════════════════════════
+       Bandes pleine largeur, pas un triptyque de cartes : les trois
+       territoires doivent peser autant l'un que l'autre. Le §0 du
+       cadrage insiste — PH ne doit pas être réduit au dépannage. -->
+  <section class="section-sm" aria-labelledby="univers-title">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="rule"></div>
+        <h2 class="h-lg" id="univers-title">Les trois univers Pronto Habitat</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="univers" id="depannage">
+    <div class="wrap">
+      <div>
+        <span class="univers-num">01 — Dépannage</span>
+        <h2 class="h-md">Quand ça ne peut pas attendre.</h2>
+      </div>
+      <div class="univers-body">
+        <p>Fuite, panne, équipement défectueux, problème électrique, sanitaire endommagé,
+           porte ou équipement à réparer…</p>
+        <p>Nous identifions le problème et cherchons d'abord <strong>la solution adaptée</strong>,
+           sans transformer automatiquement une réparation en remplacement.</p>
+        <p class="metiers">
+          Plomberie <span class="sep">·</span> Électricité <span class="sep">·</span> Sanitaire
+          <span class="sep">·</span> Chauffage <span class="sep">·</span> Climatisation
+          <span class="sep">·</span> Serrurerie <span class="sep">·</span> Petites réparations
+          <span class="sep">·</span> Remise en état
+        </p>
+        <div class="btn-row">
+          <a href="depannage.html" class="link-arrow">Besoin d'un dépannage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="univers" id="confort">
+    <div class="wrap">
+      <div>
+        <span class="univers-num">02 — Confort</span>
+        <h2 class="h-md">Parce qu'un logement doit aussi être agréable à vivre.</h2>
+      </div>
+      <div class="univers-body">
+        <p>Une salle de bain plus pratique. Une pièce mieux chauffée. Une climatisation pour l'été.
+           De nouveaux rangements. Un éclairage mieux pensé. Une chambre à rafraîchir.</p>
+        <p>Parfois, quelques travaux bien choisis suffisent à changer réellement le quotidien.</p>
+        <p>Nous vous aidons à <strong>améliorer l'usage, le confort et l'esthétique de votre
+           logement</strong>, sans nécessairement tout refaire.</p>
+        <p class="metiers">
+          Salle de bain <span class="sep">·</span> Cuisine <span class="sep">·</span> Chauffage
+          <span class="sep">·</span> Climatisation <span class="sep">·</span> Éclairage
+          <span class="sep">·</span> Rangements <span class="sep">·</span> Revêtements
+          <span class="sep">·</span> Peinture <span class="sep">·</span> Menuiserie
+          <span class="sep">·</span> Agencement
+        </p>
+        <div class="btn-row">
+          <a href="confort-optimisation.html" class="link-arrow">Améliorer mon logement</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="univers" id="optimisation">
+    <div class="wrap">
+      <div>
+        <span class="univers-num">03 — Optimisation</span>
+        <h2 class="h-md">Faire mieux avec ce que vous avez déjà.</h2>
+      </div>
+      <div class="univers-body">
+        <p>Tous les projets ne nécessitent pas une rénovation complète.</p>
+        <p>Remplacer un équipement vieillissant, revoir un agencement, récupérer des mètres carrés,
+           améliorer l'isolation d'une pièce ou transformer un espace inutilisé peut parfois avoir
+           beaucoup plus de valeur.</p>
+        <p>Nous regardons votre logement dans son ensemble pour identifier les améliorations
+           réellement utiles.</p>
+        <p class="metiers">
+          Aménagement d'espace <span class="sep">·</span> Isolation <span class="sep">·</span> Régulation
+          <span class="sep">·</span> Équipements <span class="sep">·</span> Économies d'énergie
+          <span class="sep">·</span> Redistribution <span class="sep">·</span> Optimisation des volumes
+          <span class="sep">·</span> Valorisation du logement
+        </p>
+        <div class="btn-row">
+          <a href="confort-optimisation.html#optimisation" class="link-arrow">Étudier une amélioration</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VOTRE BUDGET — §8 ═════════════════════════════════════════
+       « Élément de différenciation PH, doit avoir une vraie présence
+       visuelle » : d'où l'aplat navy pleine largeur. -->
+  <section class="section bg-navy" aria-labelledby="budget-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="rule is-brand"></div>
+        <span class="eyebrow">Votre budget</span>
+        <h2 class="h-lg" id="budget-title">Un beau projet doit aussi être<br>un projet maîtrisé.</h2>
+        <p class="lead">Parler du budget ne devrait pas être inconfortable. Connaître votre enveloppe
+           nous permet de proposer des choix cohérents et de concentrer le budget là où il apporte
+           réellement de la valeur.</p>
+      </div>
+
+      <div class="budget-grid">
+        <div class="budget-item">
+          <h3>Indispensable</h3>
+          <p>Ce qui doit être réalisé pour assurer la sécurité, le fonctionnement ou la pérennité.</p>
+        </div>
+        <div class="budget-item">
+          <h3>Recommandé</h3>
+          <p>Ce qui améliore sensiblement le résultat ou évite de devoir intervenir à nouveau.</p>
+        </div>
+        <div class="budget-item">
+          <h3>Optionnel</h3>
+          <p>Ce qui relève davantage du confort, du design ou d'un niveau de finition supérieur.</p>
+        </div>
+      </div>
+
+      <p class="pull mt-7">L'objectif n'est pas de faire le maximum de travaux.
+         C'est de faire les bons travaux dans la bonne enveloppe.</p>
+    </div>
+  </section>
+
+  <!-- ══ NOTRE FAÇON DE TRAVAILLER — §10 ═══════════════════════════
+       Timeline explicitement demandée : « pas de 5 cards ». -->
+  <section class="section" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="rule"></div>
+        <span class="eyebrow">Simple du début à la fin</span>
+        <h2 class="h-lg" id="process-title">Vous gardez les décisions.<br>Nous gérons le projet.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-step">
+          <span class="tl-num">01 — Écouter</span>
+          <h3 class="h-sm">Vous nous expliquez votre besoin</h3>
+          <p>Votre problème, votre projet, vos envies et votre budget. Photos, plans ou visite sur
+             place permettent de préciser le besoin.</p>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">02 — Proposer</span>
+          <h3 class="h-sm">Nous définissons le périmètre</h3>
+          <p>Nous vous présentons une solution compréhensible. Lorsque plusieurs possibilités
+             existent, nous vous expliquons les différences.</p>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">03 — Planifier</span>
+          <h3 class="h-sm">Tout est organisé avant le démarrage</h3>
+          <p>Prestations, intervenants, approvisionnements et calendrier sont organisés avant que
+             les travaux ne commencent.</p>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">04 — Réaliser</span>
+          <h3 class="h-sm">Les travaux se déroulent chez vous</h3>
+          <p>Ils sont réalisés en protégeant votre logement et en limitant autant que possible la
+             gêne occasionnée.</p>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">05 — Terminer</span>
+          <h3 class="h-sm">Nous allons jusqu'aux finitions</h3>
+          <p>Nous contrôlons les travaux, traitons les éventuelles réserves et allons jusqu'aux
+             finitions.</p>
+        </div>
+      </div>
+
+      <p class="pull mt-7">Un projet n'est pas terminé lorsque les artisans partent.
+         Il est terminé lorsque ce qui était prévu est réalisé.</p>
+    </div>
+  </section>
+
+  <!-- ══ ENGAGEMENTS — renvoi, §11 ═════════════════════════════════
+       Les 8 engagements détaillés vivent sur pronto-habitat.html. La
+       page d'accueil en porte déjà la version courte en 4 promesses,
+       juste sous le hero (§3) : afficher les deux blocs sur la même
+       page ferait dire deux fois la même chose, et les publier sur
+       deux URL créerait du contenu identique dupliqué. -->
+  <section class="section bg-alt">
+    <div class="wrap">
+      <div class="text-col">
+        <div class="rule"></div>
+        <h2 class="h-lg">Ce à quoi nous nous engageons.</h2>
+        <p class="lead mt-6">Un devis compréhensible et pas seulement un montant. Un budget qui
+           n'évolue pas sans votre accord. Un chantier propre. Une difficulté expliquée quand elle
+           arrive, pas découverte à la fin. Et un suivi qui ne s'arrête pas à la dernière facture.</p>
+        <div class="btn-row">
+          <a href="pronto-habitat.html#engagements" class="link-arrow">Lire nos huit engagements</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ZONE D'INTERVENTION ═══════════════════════════════════════
+       .zone-section de sosfonte.com, qui y accroche ses pages locales
+       (/intervention/<ville>/). Le levier SEO local est le même pour
+       Pronto Habitat.
+
+       La liste vient de PHC.cities. Tant qu'elle est vide, site.js
+       retire la section entière : le §23 n'a pas arbitré la zone
+       exacte, et annoncer une couverture qu'on n'a pas est la
+       promesse la plus coûteuse à démentir. -->
+  <section class="section" data-ph-zone aria-labelledby="zone-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="rule"></div>
+        <h2 class="h-lg" id="zone-title">Où nous intervenons.</h2>
+        <p class="lead">Nous intervenons sur le secteur suivant&nbsp;: <span data-ph="area">À compléter</span>.</p>
+      </div>
+      <div class="zone-list"></div>
+    </div>
+  </section>
+
+  <!-- ══ CTA PROJET — §16 ══════════════════════════════════════════ -->
+  <section class="cta-strip">
+    <div class="wrap">
+      <div class="rule"></div>
+      <h2 class="h-lg">Vous avez une idée.<br>Parlons d'abord de votre besoin.</h2>
+      <p>Vous n'avez pas besoin de connaître le nom technique des travaux. Expliquez-nous
+         simplement ce que vous souhaitez résoudre, ce que vous aimeriez changer, le logement
+         concerné, votre calendrier et, si vous l'avez déjà définie, votre enveloppe budgétaire.</p>
+      <p>Vous pouvez également joindre <strong>photos, plans, croquis ou inspirations</strong>.</p>
+      <div class="btn-row">
+        <a href="contact.html#projet" class="btn btn-primary">Parler de mon projet</a>
+        <a href="contact.html#depannage" class="btn btn-outline">Décrire un problème</a>
+        <!-- wa-cta : le href n'est pose par site.js que si le numero
+             WhatsApp existe ; sans lui le CSS masque le bouton (§23). -->
+        <a class="btn btn-wa" data-ph-wa="depannage"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg> WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/brand/ph-logo-complet-sombre.png" alt="Pronto Habitat — DÉPANNAGE · CONFORT · OPTIMISATION" width="1939" height="459" loading="lazy">
+        <p>Réparation, rénovation et amélioration de l'habitat avec une prise en charge claire
+           du premier besoin jusqu'aux finitions.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Dépannage</h2>
+        <a href="depannage.html#plomberie">Plomberie</a>
+        <a href="depannage.html#electricite">Électricité</a>
+        <a href="depannage.html#chauffage">Chauffage</a>
+        <a href="depannage.html#sanitaire">Sanitaire</a>
+        <a href="depannage.html#climatisation">Climatisation</a>
+        <a href="depannage.html">Autres interventions</a>
+      </div>
+      <div class="footer-col">
+        <h2>Rénovation</h2>
+        <a href="renovation.html#salle-de-bain">Salle de bain</a>
+        <a href="renovation.html#cuisine">Cuisine</a>
+        <a href="renovation.html#interieure">Rénovation intérieure</a>
+        <a href="renovation.html#dependance">Aménagement</a>
+        <a href="renovation.html#rafraichissement">Revêtements</a>
+        <a href="renovation.html#corps-etat">Tous corps d'état</a>
+      </div>
+      <div class="footer-col">
+        <h2>Pronto Habitat</h2>
+        <a href="pronto-habitat.html">Qui sommes-nous</a>
+        <a href="pronto-habitat.html#engagements">Nos engagements</a>
+          <a href="faq.html">Questions fréquentes</a>
+        <a href="contact.html">Contact</a>
+        <h2 class="mt-5">Contact</h2>
+        <a data-ph="phone">À compléter</a>
+        <a data-ph="email">À compléter</a>
+        <p data-ph="hours">À compléter</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Pronto Habitat — une marque FX&nbsp;Services · Tous droits réservés.</span>
+      <div class="footer-legal-links">
+        <a href="https://fx-services.fr" target="_blank" rel="noopener">FX Services</a>
+        <a href="https://sosfonte.com" target="_blank" rel="noopener">SOS Fonte</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/tracking.js?v=6c91dc34" defer></script>
+<script src="assets/js/site.js?v=6c91dc34" defer></script>
+
+<!-- ══ BARRE D'ACTION MOBILE ═════════════════════════════════════
+     Motif repris de sosfonte.com. Sur mobile, le visiteur decide au
+     milieu de la page : les canaux restent a portee de pouce. Chaque
+     lien disparait si son canal n'est pas encore renseigne (§23), et
+     la barre entiere avec eux s'il n'en reste aucun. -->
+<div class="action-bar" role="group" aria-label="Nous joindre">
+  <a class="btn btn-primary" data-ph="phone-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-ph-text>Appeler</span></a>
+  <a class="btn btn-wa" data-ph-wa="depannage"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg> WhatsApp</a>
+  <a class="btn btn-navy" href="contact.html">Écrire</a>
+</div>
+
+<script src="assets/js/agent-lea.js?v=6c91dc34" defer></script>
+</body>
+</html>

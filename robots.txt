@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pronto-habitat.fr/sitemap.xml

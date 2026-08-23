@@ -1,0 +1,10 @@
+# Fins de ligne normalisées en LF dans le dépôt, quelle que soit la
+# machine qui commite. Sans cela, un aller-retour Windows/macOS
+# réécrit des fichiers entiers et rend les diffs illisibles.
+* text=auto eol=lf
+
+# Binaires : ne jamais y toucher.
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.ico   binary

@@ -266,8 +266,8 @@ p + p { margin-top: var(--s-4); }
 
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
 
-.section { padding: var(--s-9) 0; }
-.section-sm { padding: var(--s-8) 0; }
+.section { padding: var(--s-8) 0; }
+.section-sm { padding: var(--s-7) 0; }
 .section-lg { padding: var(--s-10) 0; }
 
 /* L'ivoire crée les zones de respiration prescrites au §9 : il ne
@@ -441,7 +441,7 @@ p + p { margin-top: var(--s-4); }
    ═══════════════════════════════════════════════════════════════════ */
 
 .hero { background: var(--ph-navy); color: var(--ph-white); position: relative; overflow: hidden; }
-.hero .wrap { padding-top: var(--s-9); padding-bottom: var(--s-9); position: relative; z-index: 2; }
+.hero .wrap { padding-top: var(--s-8h); padding-bottom: var(--s-8h); position: relative; z-index: 2; }
 .hero h1 { color: var(--ph-white); max-width: 15ch; }
 .hero .hero-sub { margin-top: var(--s-6); max-width: 60ch; font-size: var(--fs-5); line-height: 1.6; color: rgba(255,255,255,.86); }
 .hero .hero-sub strong { color: var(--ph-white); font-weight: 700; }
@@ -458,7 +458,7 @@ p + p { margin-top: var(--s-4); }
 }
 
 .page-hero { background: var(--ph-navy); color: var(--ph-white); }
-.page-hero .wrap { padding-top: var(--s-8); padding-bottom: var(--s-8); }
+.page-hero .wrap { padding-top: var(--s-7); padding-bottom: var(--s-7); }
 .page-hero h1 { color: var(--ph-white); max-width: 18ch; }
 .page-hero .lead { margin-top: var(--s-5); max-width: 62ch; }
 
@@ -1121,3 +1121,102 @@ p + p { margin-top: var(--s-4); }
 /* Le fil d'Ariane du sur-titre reste lisible sur le hero sombre. */
 .page-hero .eyebrow a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .page-hero .eyebrow a:hover { color: var(--ph-white); }
+
+/* @bloc-passe-finale - ne pas retirer cette sentinelle */
+
+/* ══════════════════════════════════════════════════════════════════
+   PASSE FINALE : densité, piliers, besoins, signature
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── §3 Densité ───────────────────────────────────────────────────
+   Le titre et son contenu appartiennent au même raisonnement : 48 px
+   entre les deux les faisaient lire comme deux blocs distincts. */
+.text-col > .rule + h2,
+.text-col > .rule + h1 { margin-top: var(--s-4); }
+.text-col > h2 + p,
+.text-col > h2 + .lead { margin-top: var(--s-4); }
+.text-col > p + p { margin-top: var(--s-4); }
+
+.enum { gap: var(--s-6) var(--s-7); }
+.tag-row { gap: var(--s-2); }
+
+/* Deux crans de moins sur les marges les plus larges, pour que .mt-7
+   cesse de creuser un vide au milieu d'une démonstration. */
+.mt-6 { margin-top: var(--s-5) !important; }
+.mt-7 { margin-top: var(--s-6) !important; }
+
+/* La bande d'action et le CTA final gardent leur air : ce sont les
+   moments où la page doit respirer, pas se resserrer. */
+.action-band { padding: var(--s-6) 0; }
+
+/* ── §12 Les quatre piliers ───────────────────────────────────────
+   Le filet orange souligne le titre : il désigne, il ne remplit pas. */
+.piliers {
+  display: grid; gap: var(--s-7) var(--s-8);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin-top: var(--s-6);
+}
+.pilier h3 {
+  font-size: var(--fs-6); line-height: 1.25;
+  padding-bottom: var(--s-3);
+  border-bottom: 2px solid var(--ph-orange);
+  display: inline-block;
+}
+.pilier p {
+  margin-top: var(--s-4);
+  font-size: var(--fs-3); color: var(--body);
+  max-width: 52ch;
+}
+
+/* ── §11 Les six besoins ──────────────────────────────────────────
+   Énoncés du point de vue de l'habitant. Trois colonnes au large,
+   pour que l'ensemble se lise d'un regard au lieu de dérouler. */
+.besoins {
+  display: grid; gap: var(--s-6) var(--s-7);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.besoin h3 { font-size: var(--fs-5); line-height: 1.3; color: var(--ink); }
+.besoin p {
+  margin-top: var(--s-3);
+  font-size: var(--fs-3); color: var(--body);
+}
+
+/* ── §6 Les situations ────────────────────────────────────────────
+   Des phrases, pas des cartes. Le filet orange les relie sans les
+   enfermer dans des boîtes. */
+.situations {
+  display: grid; gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: var(--wrap);
+}
+.situations p {
+  margin: 0; padding-left: var(--s-5);
+  border-left: 2px solid var(--ph-orange);
+  font-size: var(--fs-4); color: var(--ink);
+}
+
+/* ── Signature ────────────────────────────────────────────────────
+   L'énumération des métiers, sous la signature. Volontairement
+   discrète et en minuscules : elle informe, elle ne doit pas être
+   confondue avec la signature verrouillée juste au-dessus. */
+.hero-metiers {
+  margin-top: var(--s-3);
+  font-size: var(--fs-2);
+  color: rgba(255,255,255,.72);
+  letter-spacing: .01em;
+}
+
+/* ── §9 La nomenclature des métiers se fait discrète ──────────────
+   Huit blocs titrés faisaient lire la page comme un catalogue de
+   corps d'état. Les ancres sont conservées — le pied de page y
+   renvoie — mais la grille se resserre et passe après les
+   situations, qui sont ce que le visiteur reconnaît. */
+.presta-intro {
+  margin: var(--s-5) 0 var(--s-6);
+  font-size: var(--fs-4); color: var(--body);
+  max-width: var(--wrap-read);
+}
+.presta-item { padding: var(--s-5) 0; gap: var(--s-6); }
+.presta-item h3 { font-size: var(--fs-5); }
+.presta-item p { font-size: var(--fs-3); }
+.mb-6 { margin-bottom: var(--s-6); }

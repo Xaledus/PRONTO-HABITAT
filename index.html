@@ -27,9 +27,9 @@
      symbole avant validation d'un signe propriétaire, et proscrit
      l'invention d'un pictogramme générique. Point à arbitrer. -->
 <meta name="theme-color" content="#0F2233">
-<link rel="stylesheet" href="assets/css/ph.css?v=c62e86e9">
-<link rel="stylesheet" href="assets/css/lea.css?v=c62e86e9">
-<script src="assets/js/site-config.js?v=c62e86e9" defer></script>
+<link rel="stylesheet" href="assets/css/ph.css?v=7b0b07c6">
+<link rel="stylesheet" href="assets/css/lea.css?v=7b0b07c6">
+<script src="assets/js/site-config.js?v=7b0b07c6" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu principal</a>
@@ -84,12 +84,19 @@
         <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Périmètre et prix définis avant de commencer</span>
         <span class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Aucun travail supplémentaire sans votre accord</span>
       </div>
+      <!-- La signature verrouillée par la charte, dans sa forme exacte
+           et son ordre exact. Le composant .baseline lui est RÉSERVÉ :
+           il portait auparavant quatre termes de prestations, ce qui
+           donnait à une énumération l'apparence de la signature. -->
       <div class="baseline">
         <i>Dépannage</i><span class="sep" aria-hidden="true"></span>
-        <i>Rénovation</i><span class="sep" aria-hidden="true"></span>
-        <i>Aménagement</i><span class="sep" aria-hidden="true"></span>
-        <i>Tous corps d'état</i>
+        <i>Confort</i><span class="sep" aria-hidden="true"></span>
+        <i>Optimisation</i>
       </div>
+      <!-- L'énumération des prestations reste, dans un traitement qui
+           ne l'imite pas : minuscules, pas de point médian orange. -->
+      <p class="hero-metiers">Dépannage, rénovation, aménagement&nbsp;·
+         tous corps d'état</p>
     </div>
   </section>
 
@@ -175,16 +182,9 @@
         <h2 class="h-md">Quand ça ne peut pas attendre.</h2>
       </div>
       <div class="univers-body">
-        <p>Fuite, panne, équipement défectueux, problème électrique, sanitaire endommagé,
-           porte ou équipement à réparer…</p>
-        <p>Nous identifions le problème et cherchons d'abord <strong>la solution adaptée</strong>,
-           sans transformer automatiquement une réparation en remplacement.</p>
-        <p class="metiers">
-          Plomberie <span class="sep">·</span> Électricité <span class="sep">·</span> Sanitaire
-          <span class="sep">·</span> Chauffage <span class="sep">·</span> Climatisation
-          <span class="sep">·</span> Serrurerie <span class="sep">·</span> Petites réparations
-          <span class="sep">·</span> Remise en état
-        </p>
+        <p>Une fuite, une panne, un équipement hors service. Nous identifions le problème
+           et cherchons d'abord <strong>la solution adaptée</strong>, sans transformer
+           automatiquement une réparation en remplacement.</p>
         <div class="btn-row">
           <a href="depannage.html" class="link-arrow">Besoin d'un dépannage</a>
         </div>
@@ -199,18 +199,9 @@
         <h2 class="h-md">Parce qu'un logement doit aussi être agréable à vivre.</h2>
       </div>
       <div class="univers-body">
-        <p>Une salle de bain plus pratique. Une pièce mieux chauffée. Une climatisation pour l'été.
-           De nouveaux rangements. Un éclairage mieux pensé. Une chambre à rafraîchir.</p>
-        <p>Parfois, quelques travaux bien choisis suffisent à changer réellement le quotidien.</p>
-        <p>Nous vous aidons à <strong>améliorer l'usage, le confort et l'esthétique de votre
-           logement</strong>, sans nécessairement tout refaire.</p>
-        <p class="metiers">
-          Salle de bain <span class="sep">·</span> Cuisine <span class="sep">·</span> Chauffage
-          <span class="sep">·</span> Climatisation <span class="sep">·</span> Éclairage
-          <span class="sep">·</span> Rangements <span class="sep">·</span> Revêtements
-          <span class="sep">·</span> Peinture <span class="sep">·</span> Menuiserie
-          <span class="sep">·</span> Agencement
-        </p>
+        <p>Une salle de bain plus pratique, une pièce mieux chauffée, un éclairage mieux
+           pensé. Quelques travaux bien choisis suffisent souvent à changer le quotidien,
+           <strong>sans tout refaire</strong>.</p>
         <div class="btn-row">
           <a href="confort-optimisation.html" class="link-arrow">Améliorer mon logement</a>
         </div>
@@ -231,12 +222,6 @@
            beaucoup plus de valeur.</p>
         <p>Nous regardons votre logement dans son ensemble pour identifier les améliorations
            réellement utiles.</p>
-        <p class="metiers">
-          Aménagement d'espace <span class="sep">·</span> Isolation <span class="sep">·</span> Régulation
-          <span class="sep">·</span> Équipements <span class="sep">·</span> Économies d'énergie
-          <span class="sep">·</span> Redistribution <span class="sep">·</span> Optimisation des volumes
-          <span class="sep">·</span> Valorisation du logement
-        </p>
         <div class="btn-row">
           <a href="confort-optimisation.html#optimisation" class="link-arrow">Étudier une amélioration</a>
         </div>
@@ -290,38 +275,26 @@
 
       <div class="timeline">
         <div class="tl-step">
-          <span class="tl-num">01 - Écouter</span>
+          <span class="tl-num">01 - Comprendre</span>
           <h3 class="h-sm">Vous nous expliquez votre besoin</h3>
-          <p>Votre problème, votre projet, vos envies et votre budget. Photos, plans ou visite sur
-             place permettent de préciser le besoin.</p>
+          <p>Votre problème, votre projet, vos envies et votre budget. Photos, plans ou
+             visite sur place permettent de préciser ce que vous voulez obtenir.</p>
         </div>
         <div class="tl-step">
-          <span class="tl-num">02 - Proposer</span>
-          <h3 class="h-sm">Nous définissons le périmètre</h3>
-          <p>Nous vous présentons une solution compréhensible. Lorsque plusieurs possibilités
-             existent, nous vous expliquons les différences.</p>
+          <span class="tl-num">02 - Cadrer</span>
+          <h3 class="h-sm">Nous définissons le périmètre et le prix</h3>
+          <p>Une solution compréhensible, et les différences expliquées lorsque plusieurs
+             possibilités existent. Prestations, intervenants et calendrier sont organisés
+             avant que les travaux commencent.</p>
         </div>
         <div class="tl-step">
-          <span class="tl-num">03 - Planifier</span>
-          <h3 class="h-sm">Tout est organisé avant le démarrage</h3>
-          <p>Prestations, intervenants, approvisionnements et calendrier sont organisés avant que
-             les travaux ne commencent.</p>
-        </div>
-        <div class="tl-step">
-          <span class="tl-num">04 - Réaliser</span>
-          <h3 class="h-sm">Les travaux se déroulent chez vous</h3>
-          <p>Ils sont réalisés en protégeant votre logement et en limitant autant que possible la
-             gêne occasionnée.</p>
-        </div>
-        <div class="tl-step">
-          <span class="tl-num">05 - Terminer</span>
-          <h3 class="h-sm">Nous allons jusqu'aux finitions</h3>
-          <p>Nous contrôlons les travaux, traitons les éventuelles réserves et allons jusqu'aux
-             finitions.</p>
+          <span class="tl-num">03 - Conduire</span>
+          <h3 class="h-sm">Nous menons le chantier jusqu'aux finitions</h3>
+          <p>Les travaux se déroulent chez vous, logement protégé et gêne limitée. Nous
+             contrôlons, traitons les réserves et allons jusqu'au bout.</p>
         </div>
       </div>
-
-      <p class="pull mt-7">Un projet n'est pas terminé lorsque les artisans partent.
+<p class="pull mt-7">Un projet n'est pas terminé lorsque les artisans partent.
          Il est terminé lorsque ce qui était prévu est réalisé.</p>
     </div>
   </section>
@@ -337,11 +310,10 @@
       <div class="text-col">
         <div class="rule"></div>
         <h2 class="h-lg">Ce à quoi nous nous engageons.</h2>
-        <p class="lead mt-6">Un devis compréhensible et pas seulement un montant. Un budget qui
-           n'évolue pas sans votre accord. Un chantier propre. Une difficulté expliquée quand elle
-           arrive, pas découverte à la fin. Et un suivi qui ne s'arrête pas à la dernière facture.</p>
+        <p class="lead mt-5">Un interlocuteur, un cadre clair, votre logement respecté, et
+           un suivi jusqu'aux finitions.</p>
         <div class="btn-row">
-          <a href="pronto-habitat.html#engagements" class="link-arrow">Lire nos huit engagements</a>
+          <a href="pronto-habitat.html#engagements" class="link-arrow">Ce que cela veut dire, concrètement</a>
         </div>
       </div>
     </div>
@@ -437,8 +409,8 @@
   </div>
 </footer>
 
-<script src="assets/js/tracking.js?v=c62e86e9" defer></script>
-<script src="assets/js/site.js?v=c62e86e9" defer></script>
+<script src="assets/js/tracking.js?v=7b0b07c6" defer></script>
+<script src="assets/js/site.js?v=7b0b07c6" defer></script>
 
 <!-- ══ BARRE D'ACTION MOBILE ═════════════════════════════════════
      Motif repris de sosfonte.com. Sur mobile, le visiteur decide au
@@ -451,6 +423,6 @@
   <a class="btn btn-navy" href="contact.html">Écrire</a>
 </div>
 
-<script src="assets/js/agent-lea.js?v=c62e86e9" defer></script>
+<script src="assets/js/agent-lea.js?v=7b0b07c6" defer></script>
 </body>
 </html>

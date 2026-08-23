@@ -1023,7 +1023,7 @@ p + p { margin-top: var(--s-4); }
 /* ── Avant / après ──────────────────────────────────────────────────
    Les deux images sortent du même ratio : une comparaison qui change
    de cadrage ment sur le recadrage autant que sur le résultat.      */
-.duos { display: grid; gap: var(--s-8); }
+.duos { display: grid; gap: var(--s-6); }
 .duo { display: grid; gap: var(--s-4); grid-template-columns: 1fr 1fr; }
 .duo figure { position: relative; margin: 0; }
 .duo img { display: block; width: 100%; height: auto; }
@@ -1052,6 +1052,31 @@ p + p { margin-top: var(--s-4); }
 .lots li::before {
   content: ""; position: absolute; left: 0; top: .62em;
   width: 8px; height: 1px; background: var(--ph-orange);
+}
+
+/* ── Bandes de chantier ──────────────────────────────────────────
+   Une bande = un temps du chantier. Toutes les cellules au MEME
+   format : c'est ce qui supprime les hauteurs irregulieres, donc le
+   blanc entre les vignettes. Les photos sont recadrees a l'affichage
+   par object-fit, jamais deformees.
+   Ecart de 8 px et non 32 : les photos doivent se lire comme un bloc,
+   pas comme des elements disperses. */
+.bande {
+  display: grid; gap: var(--s-2);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.bande figure { margin: 0; position: relative; }
+.bande img.couvre {
+  display: block; width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover; background: var(--paper-alt);
+}
+.bande figcaption {
+  padding: var(--s-3) var(--s-3) var(--s-4);
+  font-size: var(--fs-2); color: var(--body);
+}
+/* Au-dela de six photos la bande gagne a etre plus serree. */
+@media (min-width: 1000px) {
+  .bande { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 }
 
 /* ── Galerie ────────────────────────────────────────────────────── */

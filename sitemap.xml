@@ -105,6 +105,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://pronto-habitat.fr/realisations/theme-chambre.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://pronto-habitat.fr/realisations/theme-chantier.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

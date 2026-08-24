@@ -839,8 +839,12 @@
     donnees.branche = 'depannage'; donnees.brancheLabel = 'Dépannage';
     tracer('lea_branch_selected');
     return precision(brancheDepannage, 'Qu’est-ce qui ne va pas ?', [
-      'Une fuite d’eau', 'Un problème électrique', 'Chauffage ou eau chaude',
-      'Sanitaire ou évacuation', 'Serrure, porte, menuiserie', 'Autre chose à réparer',
+      /* Ordre maître du §6 : plomberie, CVC, sanitaire, électricité.
+         « Serrure, porte, menuiserie » est retiré — la serrurerie sort
+         du périmètre mis en avant (§5). */
+      'Une fuite d’eau', 'Chauffage, ventilation ou eau chaude',
+      'Sanitaire ou évacuation', 'Un problème électrique',
+      'Autre chose à réparer',
     ], etapeUrgence);
   }
   function brancheRenovation() {

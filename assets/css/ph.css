@@ -866,9 +866,30 @@ p + p { margin-top: var(--s-4); }
    Le vert est la couleur officielle du service, pas un ajout à la
    palette : il n'apparaît que sur ce bouton et dans l'agent.
    Texte vert très sombre pour tenir le contraste.                   */
-.btn-wa { background: #25D366; color: #06301A; }
-.btn-wa:hover { background: #1EBE5C; color: #06301A; }
-.btn-wa svg { flex: none; }
+/* WhatsApp : le canal prioritaire, sans l'aplat vert.
+   Le pictogramme garde la couleur de la marque WhatsApp — c'est lui
+   qui identifie le canal — et le bouton se fond dans la DA. Un aplat
+   vert pleine largeur pesait plus lourd visuellement que la promesse
+   qu'il portait. */
+.btn-wa {
+  background: transparent; color: var(--ph-white);
+  border: 1px solid rgba(255,255,255,.34);
+  transition: border-color .18s, background .18s;
+}
+.btn-wa:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.62);
+  color: var(--ph-white);
+}
+.btn-wa svg { flex: none; color: #25D366; }
+
+/* Sur fond clair, le texte doit redevenir lisible. */
+.bg-alt .btn-wa, .section:not(.bg-navy) .btn-wa, .action-bar .btn-wa {
+  color: var(--ink); border-color: var(--line-strong);
+}
+.bg-alt .btn-wa:hover, .section:not(.bg-navy) .btn-wa:hover, .action-bar .btn-wa:hover {
+  background: rgba(15,34,51,.05); border-color: var(--ink); color: var(--ink);
+}
 /* Masqué tant que le numéro WhatsApp n'est pas renseigné (§23) :
    site.js ne pose l'attribut href que si le numéro existe. Un bouton
    qui ouvre un WhatsApp vide est pire qu'un bouton absent. */
@@ -1220,3 +1241,63 @@ p + p { margin-top: var(--s-4); }
 .presta-item h3 { font-size: var(--fs-5); }
 .presta-item p { font-size: var(--fs-3); }
 .mb-6 { margin-bottom: var(--s-6); }
+
+/* La precision du §15, sous le chapo : presente sans peser. */
+.lead-note {
+  margin-top: var(--s-4); max-width: 62ch;
+  font-size: var(--fs-3); color: rgba(255,255,255,.72);
+}
+
+/* @bloc-animations - §10, ne pas retirer cette sentinelle */
+
+/* ══════════════════════════════════════════════════════════════════
+   MICRO-ANIMATIONS
+   Uniquement au pointeur fin : sur un écran tactile, un état de
+   survol reste collé après le tap et donne un site qui « bugue ».
+   Trois gestes, courts, jamais permanents.
+   ══════════════════════════════════════════════════════════════════ */
+@media (hover: hover) and (pointer: fine) {
+
+  .real-card, .pilier, .besoin, .presta-item, .situations p, .tag-link {
+    transition: transform .22s cubic-bezier(.22,.61,.36,1),
+                border-color .22s, box-shadow .22s, background .22s;
+  }
+
+  /* Élévation de 2 px : assez pour être perçue, trop peu pour être
+     remarquée comme un effet. */
+  .real-card:hover { transform: translateY(-2px); }
+  .real-card:hover .real-card-img { box-shadow: var(--shadow-md); }
+
+  /* L'image se rapproche de 2 %. Au-delà, le cadrage se déforme et
+     la photo perd ce qu'elle montrait. */
+  .real-card-img img,
+  .split-media img,
+  .bande img.couvre {
+    transition: transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .real-card:hover .real-card-img img,
+  .bande figure:hover img.couvre { transform: scale(1.02); }
+
+  /* Les blocs de contenu : la bordure se précise, rien ne bouge. */
+  .pilier:hover h3 { border-bottom-color: var(--orange-title); }
+  .besoin:hover h3 { color: var(--orange-text); }
+  .presta-item:hover h3 { color: var(--orange-text); }
+  .situations p:hover { border-left-color: var(--orange-title); }
+
+  /* Les photos du site : léger relief au survol, sans cadre gadget. */
+  .split-media { overflow: hidden; }
+  .split-media:hover img { transform: scale(1.02); }
+
+  /* Le lien fléché : la flèche avance, le texte ne bouge pas. */
+  .link-arrow svg, .link-arrow::after { transition: transform .22s; }
+  .link-arrow:hover svg { transform: translateX(3px); }
+}
+
+/* Tout est neutralisé si l'utilisateur l'a demandé. La règle globale
+   de ph.css le fait déjà pour les durées ; on annule ici les
+   transformations elles-mêmes, qui survivraient à une durée nulle. */
+@media (prefers-reduced-motion: reduce) {
+  .real-card:hover, .real-card:hover .real-card-img img,
+  .bande figure:hover img.couvre, .split-media:hover img,
+  .link-arrow:hover svg { transform: none !important; }
+}

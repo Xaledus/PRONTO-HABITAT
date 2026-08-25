@@ -80,7 +80,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pronto-habitat.fr/realisations/amenagement-exterieur-terrasse-jardin.html</loc>
+    <loc>https://pronto-habitat.fr/realisations/amenagement-exterieur-enghien.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pronto-habitat.fr/realisations/amenagement-combles-cabourg.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

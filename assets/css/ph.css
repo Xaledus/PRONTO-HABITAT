@@ -1025,8 +1025,16 @@ p + p { margin-top: var(--s-4); }
 .real-card:hover .real-card-img img { transform: scale(1.03); }
 .real-card:focus-visible { outline: 2px solid var(--ph-navy); outline-offset: 4px; }
 .real-card-body { padding-top: var(--s-5); }
-.real-card-body h2 { margin-top: var(--s-2); }
+.real-card-body h2 { margin-top: var(--s-1); }
 .real-card:hover h2 { color: var(--orange-text); }
+/* Le nom du projet : un intitulé propre, distinct du titre descriptif
+   qui reste le H2. Italique, discret — il ne rivalise pas avec le
+   titre, il le precede. */
+.real-card-nom, .real-nom {
+  font-style: italic; font-size: var(--fs-2); color: var(--label);
+  margin-top: var(--s-2);
+}
+.real-nom { color: rgba(255,255,255,.68); margin-top: var(--s-3); }
 .real-card-lieu {
   margin-top: var(--s-2);
   font-size: var(--fs-2); color: var(--label);

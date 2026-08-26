@@ -910,7 +910,10 @@ p + p { margin-top: var(--s-4); }
     backdrop-filter: saturate(180%) blur(8px);
     border-top: 1px solid var(--line);
   }
-  .action-bar .btn { flex: 1; padding: var(--s-4) var(--s-3); font-size: var(--fs-2); }
+  .action-bar .btn {
+    flex: 1; min-width: 0; padding: var(--s-4) var(--s-3); font-size: var(--fs-2);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
   /* Sans cette réserve, le pied de page passe sous la barre. */
   body { padding-bottom: 76px; }
 }

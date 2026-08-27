@@ -1079,7 +1079,7 @@
         l.push(formspree);
         localStorage.setItem('ph_lea_leads', JSON.stringify(l));
       } catch (e) {}
-      console.warn('[Léa] Lead conservé en local — ' + raison, formspree);
+      console.warn('[Léa] Lead conservé en local (' + raison + ')');
     }
 
     function viaFormspree() {

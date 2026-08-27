@@ -426,14 +426,4 @@
     document.head.appendChild(el);
   })();
 
-  /* ── Contrôle de recette ─────────────────────────────────────────
-     Compte les blocs « à compléter » restants et le signale en
-     console. Sert de garde-fou avant mise en ligne : le site ne doit
-     pas partir en production avec des zones ouvertes. */
-  var ouverts = document.querySelectorAll('.todo, .photo-todo').length;
-  if (ouverts) {
-    console.warn('[Pronto Habitat] ' + ouverts + ' zone(s) à compléter sur cette page — '
-      + 'voir §23 et §24 du cadrage éditorial. Ne pas publier en l\'état.');
-  }
-
 })();
